@@ -17,15 +17,15 @@ var student = {
 function updateStudent() {
     var retrievedObject = localStorage.getItem('student');
     retrievedObject = JSON.parse(retrievedObject);
-    console.log(retrievedObject);
-    
-    for (var key in student)
-    {
-        console.log(retrievedObject[key]);
+
+    for (var key in student) {
         student[key] = retrievedObject[key];
-        
+
     }
-    console.log(student);
+    student.personnummer = "19931211-2437";
+    student.forrnamn = "Luke";
+    student.efternamn = "Haresign";
+    student.modersmal = "Engelska";
 }
 
 updateStudent();
@@ -54,7 +54,7 @@ function editData() {
         var newNode = document.createElement('input');
 
         newNode.setAttribute("id", idValue);
-        newNode.setAttribute("class", "edit-me");
+        newNode.setAttribute("class", "edit-me info-input");
         editableFields[i].parentNode.replaceChild(newNode, editableFields[i]);
         document.getElementById(idValue).value = student[idValue];
     }
@@ -62,33 +62,59 @@ function editData() {
 }
 
 function saveUpdates() {
-    for (var key in student) {
-        
 
-        if (document.getElementById(key).nodeName == "SPAN") {
-            student[key] = document.getElementById(key).innerHTML;
-        }
-        else if (document.getElementById(key).nodeName == "INPUT") {
-            student[key] = document.getElementById(key).value;
+    var address = document.getElementById("adress").value;
+    var postcode = document.getElementById("postnummer").value;
+    var town = document.getElementById("ort");
+    var mobile = document.getElementById("telefonMobil").value;
+    var emailAddress = document.getElementById("email").value;
+    var emailConfirm = document.getElementById("confirmEmail").value;
+    var homeCommunity = document.getElementById("hemkommun").value;
+    var asterix = document.querySelectorAll(".obligatory-asterix");
+
+    console.log(asterix);
+
+    var success = true;
+
+    if ((address.length === 0) || (postcode.length === 0) || (town.length === 0) || (mobile.length === 0) || (emailAddress.length === 0) || (emailConfirm.length === 0) || (homeCommunity.length === 0)) {
+        success = false;
+        for (let i = 0; i < asterix.length; i++) {
+            asterix[i].style.display = "inline";
         }
     }
 
-    
+    console.log(success);
 
-   
-    var editableFields = document.querySelectorAll(".edit-me");
-    for (let i = 0; i < editableFields.length; i++) {
-        var idValue = editableFields[i].getAttribute("id");
-        var newNode = document.createElement('span');
+    if (success) {
+        for (var key in student) {
 
-        newNode.setAttribute("id", idValue);
-        newNode.setAttribute("class", "edit-me");
-        editableFields[i].parentNode.replaceChild(newNode, editableFields[i]);
-        document.getElementById(idValue).innerHTML = student[idValue];
+
+            if (document.getElementById(key).nodeName == "SPAN") {
+                student[key] = document.getElementById(key).innerHTML;
+            }
+            else if (document.getElementById(key).nodeName == "INPUT") {
+                student[key] = document.getElementById(key).value;
+            }
+        }
+
+
+        var editableFields = document.querySelectorAll(".edit-me");
+        for (let i = 0; i < editableFields.length; i++) {
+            var idValue = editableFields[i].getAttribute("id");
+            var newNode = document.createElement('span');
+
+            newNode.setAttribute("id", idValue);
+            newNode.setAttribute("class", "edit-me info-span");
+            editableFields[i].parentNode.replaceChild(newNode, editableFields[i]);
+            document.getElementById(idValue).innerHTML = student[idValue];
+        }
+
+        for (let i = 0; i < asterix.length; i++) {
+            asterix[i].style.display = "none";
+        }
+
+        localStorage.setItem('student', JSON.stringify(student))
+        var retrievedObject = localStorage.getItem('student');
     }
 
-    localStorage.setItem('student', JSON.stringify(student))
-    var retrievedObject = localStorage.getItem('student');
-
-    console.log('retrievedObject: ', JSON.parse(retrievedObject));
 }

@@ -6,12 +6,18 @@ var coursesCompleted =  {
 };
 var coursesCompletedX =  {
         kursNamn: "CSS",
-        slutDatum: "19/09/2020",
+        slutDatum: "30/09/2020",
         betyg: "B",
         points: 200
 };
+var coursesCompletedY =  {
+    kursNamn: "JavaScript",
+    slutDatum: "10/10/2020",
+    betyg: "C",
+    points: 300
+};
 
-var coursesArray = [coursesCompleted, coursesCompletedX];
+var coursesArray = [coursesCompleted, coursesCompletedX, coursesCompletedY];
 console.log(coursesArray);
 
 
@@ -41,8 +47,8 @@ function createCertificate () {
     console.log(main_node);
 
     var nodes = "<div class=\"certificate\" onclick=\"displayModal(this)\"> \
-                    <p class=\"kurstitle\">" + kursNamn + "<\/p> \
-                 <\/div> \
+                    <h3 class=\"kurstitle\">" + kursNamn + "</h3> \
+                 </div> \
                  <div class=\"modal\"> \
                     <div class=\"close\">&times;</div> \
                     <div class=\"modal-box\"> \
