@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0px;
 }
 
 .information-label {
@@ -36,9 +37,10 @@
 
 }
 
-#container {
+#personal-info-container {
     width: 50%;
     padding: 20px;
+    margin: auto;
 }
 
 .namn, .kursNamn, .slutDatum {
@@ -46,7 +48,7 @@
 }
 
 .kurstitle {
-    line-height: 60px;
+    line-height: 95px;
 }
 
 .certificate:hover {
@@ -113,8 +115,14 @@
     border-radius: 50%;
 }
 
-#page-container {
+#certificates-container {
     display: flex;
+}
+
+.certificate-page-container {
+    width: 80%;
+    margin: auto;
+    padding-top: 50px;
 }
 
 .img_style {
@@ -135,4 +143,174 @@
 
 td,th {
     width: 150px;
+}
+
+footer {
+    padding: 30px 0px;
+    background-color: #f4f4f4;
+    color: #424242;
+}
+
+.footer-container {
+    width: 80%;
+    margin: auto;
+    padding: 30px 0px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.footer-part-container {
+    flex: 1;
+    margin-left: 10px;
+    padding-bottom: 30px;
+}
+
+.footer-link {
+    color: #424242;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: darkgoldenrod;
+}
+
+.footer-logo {
+    position: relative;
+    right: 10%;
+}
+
+#schedule-table {
+    margin: 50px;
+}
+
+.komvux-title {
+    color: #ae0b05;
+    float: right;
+    margin-right: 40px;
+    margin-top: 25px;
+}
+
+.header-bar {
+    background-color: #ae0b05;
+    padding:20px; 
+    color:white; 
+    font-size:1.5em;
+    width: 100%;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 15px;
+    cursor: pointer;
+}
+
+/*dropdown content links*/
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #F9F9F9;
+    min-width: 360px;
+    z-index: 1;
+    list-style: none;
+    top: 30px;
+    color: black;
+    cursor: default;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    font-size: 0.8em;
+    color: black;
+    padding: 12px 16px;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: grey;
+}
+
+.student-info-btn {
+    display:inline-block;
+}
+
+.personal-number {
+    /*display:none;              //ADD A FUNCTION TO DISPLAY/HIDE THIS    */ 
+    float: right;
+    margin-left: 10px;
+}
+
+.student-text {
+    cursor: pointer;
+}
+
+.search-bar {
+    float: right;
+    margin-top: 15px;
+}
+
+.home-intro {
+    font-size: 1.2em;
+    width: 75%;
+    margin: 50px auto;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1200px;
+    position: relative;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.slider-img {
+    min-height: 675px;
+}
+
+/* Slide show Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 0 3px 3px 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Slide show Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* Slider text */
+.slider-text {
+    color: white;
+    font-size: 1.2em;
+    padding: 30px 30px;
+    position: absolute;
+    bottom: 4px;
+    left: 0px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.slider-text h6 {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    padding-bottom: 20px;
 }

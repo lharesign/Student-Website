@@ -36,7 +36,7 @@ function createCertificate () {
     var slutDatum = coursesArray[i]["slutDatum"];
     
     
-    var main_node = document.getElementById("page-container");
+    var main_node = document.getElementById("certificates-container");
     console.log("The main node : " + main_node);
     var div_node_model_c = document.createElement('div');
     div_node_model_c.setAttribute("class", "modal-container");

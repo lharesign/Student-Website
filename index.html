@@ -1,8 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <script src="calendar.js" type='text/javascript' defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="slider-script.js"></script>
 </head>
 
 <body>
@@ -31,18 +35,54 @@
             <input type="submit" value="Sök">
         </form>
     </nav>
-    <table id="schedule-table">
-        <tr>
-            <th class="time">Time</th>
-            <th class="day">Monday</th>
-            <th class="day">Tuesday</th>
-            <th class="day">Wednesday</th>
-            <th class="day">Thursday</th>
-            <th class="day">Friday</th>
-            <th class="day">Saturday</th>
-            <th class="day">Sunday</th>
-        </tr>
-    </table>
+    <p class="home-intro">På Komvux Helsingborg kan du studera svenska för invandrare
+        (sfi), läsa in och komplettera
+        grundskole- och gymnasieämnen eller gå särskild utbildning för vuxna (Lärvux). Du kan välja att läsa på
+        heltid eller deltid. I ett flertal ämnen kan du studera under flexibla former.
+    </p>
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img class="slider-img" src="https://komvux.helsingborg.se/wp-content/uploads/sites/130/2017/05/sfi-800x450.jpg"
+                style="width:100%">
+            <div class="slider-text">
+                <h6>Sfi och SVA Grund</h6>
+                På Komvux Helsingborg kan du läsa utbildning i svenska för invandrare (Sfi studieväg 3)
+                och svenska som andraspråk på grundläggande nivå (SVA Grund delkurs 1-4). Du kan kombinera sfi med
+                arbete, praktik eller andra studier.
+            </div>
+        </div>
+        <div class="mySlides fade" style="display: none;">
+            <img class="slider-img" src="https://komvux.helsingborg.se/wp-content/uploads/sites/130/2019/05/74a0013-800x450.jpg"
+                style="width:100%">
+            <div class="slider-text">
+                <h6> Grundläggande vuxenutbildning </h6>
+                Du som helt eller delvis saknar betyg från grundskolan kan läsa grundläggande
+                vuxenutbildning på Komvux Helsingborg. Vill du repetera en grundskolekurs inför gymnasiestudierna
+                går det också bra.
+            </div>
+        </div>
+        <div class="mySlides fade" style="display: none;">
+            <img class="slider-img" src="https://komvux.helsingborg.se/wp-content/uploads/sites/130/2019/05/grundlaggande-800x450.jpg"
+                style="width:100%">
+            <div class="slider-text">
+                <h6> Gymnasial vuxenutbildning </h6>
+                Du som helt eller delvis saknar betyg från gymnasieskolan kan läsa gymnasial
+                vuxenutbildning. Vill du läsa in gymnasiekurser inför yrkesutbildning, högskolestudier eller arbete
+                kan du göra det på Komvux Helsingborg. Du studerar i grupp dagtid.
+            </div>
+        </div>
+        <div class="mySlides fade" style="display: none;">
+            <img class="slider-img" src="https://images.unsplash.com/photo-1570717173024-ec8081c8f8e9?ixlib=rb-1.2.1
+    &ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80 " style="width:100%; height:500px">
+            <div class="slider-text">
+                <h6> Grundläggande programmering </h6>
+                Vill du arbeta inom IT- branschen och behöver utbildning och arbetslivskontakter?
+                Då kan grundläggande programmering ge dig en bra grund för en framtid inom branschen.
+            </div>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
 </body>
 <footer>
     <div class="footer-container">
@@ -83,4 +123,5 @@
         </div>
     </div>
 </footer>
+
 </html>

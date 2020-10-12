@@ -65,7 +65,7 @@ function saveUpdates() {
 
     var address = document.getElementById("adress").value;
     var postcode = document.getElementById("postnummer").value;
-    var town = document.getElementById("ort");
+    var town = document.getElementById("ort").value;
     var mobile = document.getElementById("telefonMobil").value;
     var emailAddress = document.getElementById("email").value;
     var emailConfirm = document.getElementById("confirmEmail").value;

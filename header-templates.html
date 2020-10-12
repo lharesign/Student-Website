@@ -3,170 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        /*Kurser dropdown*/
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            margin: 15px;
-        }
-
-        /*dropdown content links*/
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #F9F9F9;
-            min-width: 360px;
-            z-index: 1;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            display: block;
-        }
-
-        /*-----------------------------------------------------------------------------------------------------------*/
-        /* Slideshow container */
-        .slideshow-container {
-            max-width: 1000px;
-            position: relative;
-            margin: auto;
-        }
-
-        /* Slide show Next & previous buttons */
-        .prev,
-        .next {
-            cursor: pointer;
-            position: absolute;
-            top: 40%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: black;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 0 3px 3px 0;
-        }
-
-        /* Slide show Position the "next button" to the right */
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        /* Slider text */
-        .text {
-            color: maroon;
-            font-size: 40px;
-            padding: 8px 12px;
-            position: absolute;
-            bottom: 50px;
-            left: 0px;
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="slider-script.js"></script>
 </head>
 
 <body>
     <header>
         <img src="http://www2.renaremark.se/wp-content/uploads/2017/08/helsingborg.png">
-        <h1 style="color:maroon; text-align:center; float:right"> Komvux Helsingborg </h1>
+        <h1 class="komvux-title">Komvux Helsingborg </h1>
     </header>
-    <nav style="background-color: brown; padding:20px; color:black; font-size:x-large">
+    <nav class="header-bar">
         <div class="dropdown">Kurser
-            <ul class="dropdown-content" style="top:0">
-                <li> <a href=""> sva grundlaggande </a> </li>
-                <li> <a href=""> kurser pa grundlaggande niva motsvarande arkurs 7-9 </a> </li>
-                <li> <a href=""> kurser pa gymnasienivea </a> </li>
-                <li> <a href=""> yrkesutbildningar </a> </li>
+            <ul class="dropdown-content">
+                <li> <a href="">SVA Grundläggande </a> </li>
+                <li> <a href="">Kurser pa grundläggande nivå motsvarande arkurs 7-9</a> </li>
+                <li> <a href="">Kurser pa gymnasienivå </a> </li>
+                <li> <a href="">Yrkesutbildningar </a> </li>
             </ul>
         </div>
-        <form target="_blank" style="display:inline-block">
-            <label> Elever Information</label>
-            <input type="text" size="12" placeholder="personliga nummer">
-            <input type="submit" value="Skicka in">
+        <form class="student-info-btn" target="_blank">
+            <label class="student-text" onclick="displayStudent()"> Elever Information</label>
+            <div class="personal-number">
+                <input type="text" placeholder="Personnummer">
+                <input type="submit" value="Skicka in">
+            </div>
         </form>
-        <form target="_blank" style="display:inline-block; float:right">
-            <label> Sök </label>
+        <form class="search-bar" target="_blank">
             <input type="search" id="gsearch" name="gsearch" size="20">
-            <input type="submit" value="Skicka in">
+            <input type="submit" value="Sök">
         </form>
     </nav>
-    <p style="font-family:cursive; font-size:x-large;">På Komvux Helsingborg kan du studera svenska för invandrare
-        (sfi), läsa in och komplettera
-        grundskole- och gymnasieämnen eller gå särskild utbildning för vuxna (Lärvux). Du kan välja att läsa på
-        heltid eller deltid. I ett flertal ämnen kan du studera under flexibla former.
-    </p>
-    <div class="slideshow-container">
-        <div class="mySlides fade">
-            <img src="https://komvux.helsingborg.se/wp-content/uploads/sites/130/2017/05/sfi-800x450.jpg"
-                style="width:100%">
-            <div class="text">
-                <h6 style="margin-left:40%">Sfi och Sva Grund</h6>
-                På Komvux Helsingborg kan du läsa utbildning i svenska för invandrare (Sfi studieväg 3)
-                och svenska som andraspråk på grundläggande nivå (Sva Grund delkurs 1-4). Du kan kombinera sfi med
-                arbete,praktik eller andra studier.
-            </div>
-        </div>
-        <div class="mySlides fade">
-            <img src="https://komvux.helsingborg.se/wp-content/uploads/sites/130/2019/05/74a0013-800x450.jpg"
-                style="width:100%">
-            <div class="text">
-                <h6 style="margin-left:30%"> Grundläggande vuxenutbildning </h6>
-                Du som helt eller delvis saknar betyg från grundskolan kan läsa grundläggande
-                vuxenutbildning på Komvux Helsingborg. Vill du repetera en grundskolekurs inför gymnasiestudierna
-                går det också bra.
-            </div>
-        </div>
-        <div class="mySlides fade">
-            <img src="https://komvux.helsingborg.se/wp-content/uploads/sites/130/2019/05/grundlaggande-800x450.jpg"
-                style="width:100%">
-            <div class="text">
-                <h6 style="margin-left:30%"> Gymnasial vuxenutbildning </h6>
-                Du som helt eller delvis saknar betyg från gymnasieskolan kan läsa gymnasial
-                vuxenutbildning. Vill du läsa in gymnasiekurser inför yrkesutbildning, högskolestudier eller arbete
-                kan du göra det på Komvux Helsingborg. Du studerar i grupp dagtid.
-            </div>
-        </div>
-        <div class="mySlides fade">
-            <img src="https://images.unsplash.com/photo-1570717173024-ec8081c8f8e9?ixlib=rb-1.2.1
-    &ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80 " style="width:100%; height:500px">
-            <div class="text">
-                <h6 style="margin-left:30%"> Grundläggande programmering </h6>
-                Vill du arbeta inom IT- branschen och behöver utbildning och arbetslivskontakter?
-                Då kan grundläggande programmering ge dig en bra grund för en framtid inom branschen.
-            </div>
-        </div>
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-    <script>
-        var slideIndex = 1;
-        showSlides(slideIndex);
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex - 1].style.display = "block";
-        }
-    </script>
 </body>
 
 </html>
