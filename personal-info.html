@@ -5,66 +5,70 @@
 
 <div id="container">
     <h1>Kontaktinformation</h1>
-    <span>(* Obligatoriskt fält)</span>
+    <span>(<span class="obligatory-asterix-permenant">*</span> Obligatoriskt fält)</span>
     <div class="information-div">
         <label for="personal-number" class="information-label">Personnummer</label>
-        <span id="personnummer"></span>
+        <span id="personnummer" class="info-span"></span>
     </div>
     <div class="information-div">
         <label for="forrnamn" class="information-label">Förrnamn</label>
-        <span id="forrnamn"></span>
+        <span id="forrnamn" class="info-span"></span>
     </div>
     <div class="information-div">
         <label for="efternamn" class="information-label">Efternamn</label>
-        <span id="efternamn"></span>
+        <span id="efternamn" class="info-span"></span>
     </div>
     <div class="information-div">
-        <label for="adress" class="information-label">Adress</label>
-        <span id="adress" class="edit-me"></span>
+        <label for="adress" class="information-label">Adress <span class="obligatory-asterix">*</span></label>
+        <span id="adress" class="edit-me info-span"></span>
     </div>
     <div class="information-div">
         <label for="co-adress" class="information-label">C/O Adress</label>
-        <span id="coAdress" class="edit-me"></span>
+        <span id="coAdress" class="edit-me info-span"></span>
 
     </div>
     <div class="information-div">
-        <label for="postnummer" class="information-label">Postnummer</label>
-        <span id="postnummer" class="edit-me"></span>
+        <label for="postnummer" class="information-label">Postnummer <span class="obligatory-asterix">*</span></label>
+        <span id="postnummer" class="edit-me info-span"></span>
 
     </div>
     <div class="information-div">
-        <label for="ort" class="information-label">Ort</label>
-        <span id="ort" class="edit-me"></span>
+        <label for="ort" class="information-label">Ort <span class="obligatory-asterix">*</span></label>
+        <span id="ort" class="edit-me info-span"></span>
 
     </div>
     <div class="information-div">
         <label for="telefon" class="information-label">Telefon</label>
-        <span id="telefon" class="edit-me"></span>
+        <span id="telefon" class="edit-me info-span"></span>
     </div>
     <div class="information-div">
-        <label for="telefon-mobil" class="information-label">Telefon mobil</label>
-        <span id="telefonMobil" class="edit-me"></span>
+        <label for="telefon-mobil" class="information-label">Telefon mobil <span
+                class="obligatory-asterix">*</span></label>
+        <span id="telefonMobil" class="edit-me info-span"></span>
 
     </div>
     <div class="information-div">
-        <label for="email" class="information-label">E-postadress</label>
-        <span id="email" class="edit-me"></span>
+        <label for="email" class="information-label">E-postadress <span class="obligatory-asterix">*</span></label>
+        <span id="email" class="edit-me info-span"></span>
 
     </div>
     <div class="information-div">
-        <label for="bekräfta-email" class="information-label">Bekräfta e-postadress</label>
-        <span id="confirmEmail" class="edit-me"></span>
+        <label for="bekräfta-email" class="information-label">Bekräfta e-postadress <span
+                class="obligatory-asterix">*</span></label>
+        <span id="confirmEmail" class="edit-me info-span"></span>
     </div>
     <div class="information-div">
-        <label for="hemkommun" class="information-label">Hemkommun</label>
-        <span id="hemkommun" class="edit-me"></span>
+        <label for="hemkommun" class="information-label">Hemkommun <span class="obligatory-asterix">*</span></label>
+        <span id="hemkommun" class="edit-me info-span"></span>
 
     </div>
     <div class="information-div">
         <label for="modersmal" class="information-label">Modersmål</label>
-        <span id="modersmal"></span>
+        <span id="modersmal" class="info-span"></span>
     </div>
-    <button id="save" onclick="saveUpdates()">Save</button>
-    <button id="edit" onclick="editData()">Edit</button>
+    <div class="button-div">
+        <button id="save" onclick="saveUpdates()">Save</button>
+        <button id="edit" onclick="editData()">Edit</button>
+    </div>
 
 </div>
