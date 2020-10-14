@@ -16,6 +16,12 @@ var retrievedStudent = {
 
 var retrievedCourses = [];
 
+var retrievedMotivering = {
+    studiemedel: null,
+    studietakt: null,
+    motivering: null
+}
+
 function loadCourses() {
     retrievedCourses = JSON.parse(localStorage.getItem("courseArray"));
     console.log(retrievedCourses);
@@ -25,9 +31,17 @@ function loadStudentInfo() {
     retrievedStudent = JSON.parse(localStorage.getItem("student"));
 }
 
+function loadMotiveringAnswers() {
+    retrievedMotivering = JSON.parse(localStorage.getItem("motiveringAnswers"));
+}
+
+
 loadCourses();
 loadStudentInfo();
+loadMotiveringAnswers();
 
+
+console.log(retrievedMotivering);
 
 function insertStudentInformation() {
 
@@ -57,3 +71,18 @@ function insertCourtInformation() {
 }
 
 insertCourtInformation();
+
+function insertMotivering() {
+    
+        let motivering = "<br>";
+        for (let key in retrievedMotivering) {
+            console.log(retrievedMotivering[key]);
+            motivering  += "<tr><td class= \"bold-text\">" + key + "</td>";
+            motivering  += "<td class=\"wide-field\">" + retrievedMotivering[key] + "</td></tr>";
+        }
+        document.getElementById("motiveringList").innerHTML += motivering;
+    }
+
+
+
+insertMotivering()
