@@ -270,7 +270,6 @@ const App = (function (CourseCtrl, UICtrl) {
         }
         
         saveList();
-
     }
 
 
