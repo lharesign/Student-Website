@@ -223,16 +223,9 @@ const App = (function (CourseCtrl, UICtrl) {
     moveOn = function (e) {
 
         var selectArray = [];
-        /*var selectObject = {
-            course: null,
-            school: null,
-            points: null
-        };*/
 
         var table = document.getElementById("selectedCourseList");
         for (var i = 0, row; row = table.rows[i]; i++) {
-            //console.log("The current row is : " + row);
-            //console.log("The individual cells are :");
             //iterate through rows
             //rows would be accessed using the "row" variable assigned in the for loop
             var selectObject = {
@@ -242,7 +235,6 @@ const App = (function (CourseCtrl, UICtrl) {
             };
 
             for (var j = 0, col; col = row.cells[j]; j++) {
-                //console.log(col.textContent);
 
                 switch (j) {
                     case 0: selectObject.course = col.textContent;
@@ -259,18 +251,11 @@ const App = (function (CourseCtrl, UICtrl) {
 
             }
 
-            console.log("The current object : ", selectObject);
-            console.log(selectArray);
             selectArray[i] = selectObject;
 
-            //console.log("Element " + i + "is ", selectArray[i]);
 
         }
-        console.log("The entire array :", selectArray);
-        //for (let k = 0; k < selectArray.length; k++) {
-        //   console.log(selectArray[k]);
-        //}
-
+     
         function saveList () {
             var jsonArray = JSON.stringify(selectArray);
             localStorage.setItem("courseArray", jsonArray);

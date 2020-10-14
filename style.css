@@ -65,8 +65,8 @@
     display: block;
     width: 80%;
     max-width: 700px;
-    padding: 5px;
     outline: 8px solid white;
+    padding: 50px 5px;
 }
 
 .close {
