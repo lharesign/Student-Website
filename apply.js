@@ -1,3 +1,31 @@
+// Storage Controller
+const StorageController = (function() {
+
+    return {
+        setCourses: function(newSelectedCourse) {
+            let selectedCourses;
+            if (localStorage.getItem('selectedCourses') === null) {
+                selectedCourses = [];
+                selectedCourses.push(newSelectedCourse);
+            } else {
+                selectedCourses = JSON.parse(localStorage.getItem('selectedCourses'));
+                selectedCourses.push(newSelectedCourse);
+            }
+            localStorage.setItem('selectedCourses', JSON.stringify(selectedCourses));
+        },
+
+        getCourses: function() {
+            let selectedCourses;
+            if (localStorage.getItem('selectedCourses') == null) {
+                selectedCourses = [];
+            } else {
+                selectedCourses = JSON.parse(localStorage.getItem('selectedCourses'));
+            }
+            return selectedCourses;
+        }
+    }
+})();
+
 // Course Controller
 const CourseController = (function() {
 
@@ -53,12 +81,14 @@ const CourseController = (function() {
             { id: 'svame', name: 'Svenska som andraspråk', coursecode: 'GRNSVA2', year: 2020, point: 700, school: 'Merit', schoolcode: 'ME GRNSVA2 DG', date: '30 dec 2019 - 3 jan 2021', period: 'Dag' },
             { id: 'svame', name: 'Svenska som andraspråk', coursecode: 'GRNSVA2', year: 2020, point: 700, school: 'Merit', schoolcode: 'ME GRNSVA2 KV', date: '30 dec 2019 - 3 jan 2021', period: 'Kväll' }
         ],
-        selectedCourses: [],
-        totalPoint: 0
+        selectedCourses: StorageController.getCourses()
     }
 
-
-
+    const SelectedCourse = function(name, school, point) {
+        this.name = name;
+        this.school = school;
+        this.point = point;
+    }
 
 
 
@@ -67,11 +97,19 @@ const CourseController = (function() {
         getCourses: function() {
             return data.courses;
         },
+
         getData: function() {
             return data;
         },
+
         getSelectedCourses: function() {
             return data.selectedCourses;
+        },
+
+        addSelectedCourseToArray: function(course, school, point) {
+            const newSelectedCourse = new SelectedCourse(course, school, point);
+            data.selectedCourses.push(newSelectedCourse);
+            return newSelectedCourse;
         }
     }
 
@@ -90,13 +128,13 @@ const UIController = (function() {
         courseTitle: "#courseTitle",
         chooseBtn: "#chooseBtn",
         selectedCourseList: "#selectedCourseList",
-        komplSelectedCourse: "#komplSelectedCourse"
+        komplSelectedCourse: "#komplSelectedCourse",
+        moveOn: "#moveOn"
     }
 
     return {
 
         getSelectors: function() {
-            //console.log(Selectors);
             return Selectors;
 
         },
@@ -188,48 +226,48 @@ const UIController = (function() {
 
 
 // App Controller
-const App = (function(CourseCtrl, UICtrl) {
+const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
 
     const UISelectors = UICtrl.getSelectors();
     // loadEventListeners
     loadEventListener = function() {
-        document.getElementById("courses").addEventListener('click', selectedCourse);
-        document.getElementById("selectedCourseList").addEventListener('click', deleteCourse);
-        document.getElementById("moveOn").addEventListener('click', moveOn);
-    }
-
-    selectedCourse = function(e) {
-        if (e.target.classList.contains("chooseBtn")) {
-            let slctcourse = '';
-
-            slctcourse += `
-                         <tr>
-                            <td>${e.target.parentElement.parentElement.firstElementChild.textContent}</td>
-                            <td>${e.target.parentElement.parentElement.nextElementSibling.firstElementChild.textContent}</td>
-                            <td>${e.target.parentElement.previousElementSibling.textContent}</td>
-                            <td><i class="fas fa-trash-alt delete"></i></td>
-                        </tr>
-            `;
-            document.querySelector(UISelectors.selectedCourseList).innerHTML += slctcourse;
-        }
-    }
-
-
-    deleteCourse = function(e) {
-        if (e.target.classList.contains("delete")) {
-            console.log(e.target.parentElement.parentElement);
-            e.target.parentElement.parentElement.remove();
-        }
+        document.querySelector(UISelectors.courseList).addEventListener('click', selectedCourse);
+        document.querySelector(UISelectors.selectedCourseList).addEventListener('click', deleteCourse);
+        document.querySelector(UISelectors.moveOn).addEventListener('click', moveOn);
     }
 
     moveOn = function(e) {
+        const tr = document.querySelector(UISelectors.selectedCourseList).children;
+        for (let i = 0; i < tr.length; i++) {
+            const element = tr[i];
+            const course = element.firstElementChild.textContent;
+            const school = element.firstElementChild.nextElementSibling.textContent;
+            const point = element.lastElementChild.previousElementSibling.textContent;
 
-        var selectArray = [];
-        /*var selectObject = {
-            course: null,
-            school: null,
-            points: null
-        };*/
+            // console.log(course, school, point);
+
+            if (course !== '' && school !== '' && point !== '') {
+                // Add selected course
+                const newSelectedCourse = CourseCtrl.addSelectedCourseToArray(course, school, point);
+
+                // add course to LS
+                StorageCtrl.setCourses(newSelectedCourse);
+            }
+        }
+
+        //e.preventDefault();
+    }
+
+
+
+    /*moveOn = function(e) {
+
+        //  var selectArray = [];
+        //var selectObject = {
+        //        course: null,
+        //      school: null,
+        //        points: null
+        //  };
 
         var table = document.getElementById("selectedCourseList");
         for (var i = 0, row; row = table.rows[i]; i++) {
@@ -264,14 +302,14 @@ const App = (function(CourseCtrl, UICtrl) {
 
             }
 
-            console.log("The current object : ", selectObject);
-            console.log(selectArray);
+           // console.log("The current object : ", selectObject);
+            //console.log(selectArray);
             selectArray[i] = selectObject;
 
             //console.log("Element " + i + "is ", selectArray[i]);
 
         }
-        console.log("The entire array :", selectArray);
+       // console.log("The entire array :", selectArray);
         //for (let k = 0; k < selectArray.length; k++) {
         //   console.log(selectArray[k]);
         //}
@@ -282,13 +320,7 @@ const App = (function(CourseCtrl, UICtrl) {
         }
 
         saveList();
-    }
-
-
-    loadEventListener = function() {
-        document.querySelector(UISelectors.courseList).addEventListener('click', selectedCourse);
-        document.querySelector(UISelectors.selectedCourseList).addEventListener('click', deleteCourse);
-    }
+    }*/
 
     selectedCourse = function(e) {
         UICtrl.addCourse(e);
@@ -315,7 +347,7 @@ const App = (function(CourseCtrl, UICtrl) {
     }
 
 
-})(CourseController, UIController);
+})(CourseController, UIController, StorageController);
 
 App.init();
 
