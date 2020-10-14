@@ -238,7 +238,7 @@ footer {
     margin-top: 15px;
 }
 
-.home-intro {
+.home-intro, .thanks-paragraph {
     font-size: 1.2em;
     width: 75%;
     margin: 50px auto;
@@ -318,4 +318,66 @@ footer {
 .courses-table {
     border-collapse: collapse;
     margin-bottom: 50px;
+}
+
+.bold-text {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.wide-field {
+    width: auto;
+}
+
+.final-button a {
+    text-decoration: none;
+    color: black;
+}
+
+.thanks-header, .thanks-paragraph {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.box-3-line {
+    min-width: 30%;
+    margin: 20px;
+    border: 1px solid #e5e5e5;
+    color: #252525;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .08);
+    border-radius: 2px;
+    flex: 1;
+}
+
+.box-item-3-line {
+    text-decoration: none;
+    color: black;
+    display: block;
+    line-height: 24px;
+    font-size: 10px;
+}
+
+.box-content-3-line {
+    padding: 15px;
+    font-size: 15px;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    
+}
+
+.box-3-line:hover {
+    background-color: #e5e5e5;
+    transition: .3s
+}
+
+.box-link-3-line {
+    color: rgba(0, 0, 0, .4);
+    font-size: 15px;
+    margin: -2px 0px 0px;
+    padding: 0px 20px 9.5px 0px;
+}
+
+.box-container-3-line {
+    display: flex;
+    flex-wrap: wrap;
 }
