@@ -53,7 +53,7 @@ const CourseController = (function () {
             { id: 'svame', name: 'Svenska som andraspråk', coursecode: 'GRNSVA2', year: 2020, point: 700, school: 'Merit', schoolcode: 'ME GRNSVA2 DG', date: '30 dec 2019 - 3 jan 2021', period: 'Dag' },
             { id: 'svame', name: 'Svenska som andraspråk', coursecode: 'GRNSVA2', year: 2020, point: 700, school: 'Merit', schoolcode: 'ME GRNSVA2 KV', date: '30 dec 2019 - 3 jan 2021', period: 'Kväll' }
         ],
-        selectedCourse: null,
+        selectedCourses: [],
         totalPoint: 0
     }
 
@@ -69,6 +69,9 @@ const CourseController = (function () {
         },
         getData: function () {
             return data;
+        },
+        getSelectedCourses: function() {
+            return data.selectedCourses;
         }
     }
 
@@ -86,7 +89,8 @@ const UIController = (function () {
         aboutCourse: "#aboutCourse",
         courseTitle: "#courseTitle",
         chooseBtn: "#chooseBtn",
-        selectedCourseList: "#selectedCourseList"
+        selectedCourseList: "#selectedCourseList",
+        komplSelectedCourse: "#komplSelectedCourse"
     }
 
     return {
@@ -146,6 +150,27 @@ const UIController = (function () {
             }
 
 
+        },
+        addCourse: function(e) {
+            if (e.target.classList.contains("chooseBtn")) {
+                let slctcourse = '';
+                slctcourse += `
+                         <tr>
+                            <td>${e.target.parentElement.parentElement.firstElementChild.textContent}</td>
+                            <td>${e.target.parentElement.parentElement.nextElementSibling.firstElementChild.textContent}</td>
+                            <td>${e.target.parentElement.previousElementSibling.textContent}</td>
+                            <td><i class="fas fa-trash-alt delete"></i></td>
+                        </tr>
+            `;
+                document.querySelector(Selectors.selectedCourseList).innerHTML += slctcourse;
+                e.preventDefault();
+            }
+        },
+
+        deleteCourse: function(e) {
+            if (e.target.classList.contains("delete")) {
+                e.target.parentElement.parentElement.remove();
+            }
         }
     }
 
@@ -249,6 +274,21 @@ const App = (function (CourseCtrl, UICtrl) {
     }
 
 
+    loadEventListener = function() {
+        document.querySelector(UISelectors.courseList).addEventListener('click', selectedCourse);
+        document.querySelector(UISelectors.selectedCourseList).addEventListener('click', deleteCourse);
+    }
+
+    selectedCourse = function(e) {
+        UICtrl.addCourse(e);
+        e.preventDefault();
+    }
+
+    deleteCourse = function(e) {
+        UICtrl.deleteCourse(e);
+        e.preventDefault();
+    }
+
 
     return {
         init: function () {
@@ -260,7 +300,6 @@ const App = (function (CourseCtrl, UICtrl) {
 
 
             loadEventListener();
-
         }
     }
 
