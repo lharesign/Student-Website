@@ -22,3 +22,8 @@
     background-color: white;
     overflow: hidden;
 }
+
+#skicka-btn {
+    text-decoration: none;
+    color: white;
+}
