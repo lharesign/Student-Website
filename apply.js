@@ -148,9 +148,13 @@ const UIController = (function() {
 
         },
         addCourse: function(e) {
-            if (e.target.classList.contains("chooseBtn")) {
-                let slctcourse = '';
-                slctcourse += `
+
+            if (e.target.classList.contains("selected") != true) {
+                if (e.target.classList.contains("chooseBtn")) {
+                    e.target.classList.add("selected");
+                    console.log(e.target.classList.contains("selected"));
+                    let slctcourse = '';
+                    slctcourse += `
                          <tr>
                             <td>${e.target.parentElement.parentElement.firstElementChild.textContent}</td>
                             <td>${e.target.parentElement.parentElement.nextElementSibling.firstElementChild.textContent}</td>
@@ -158,14 +162,17 @@ const UIController = (function() {
                             <td><i class="fas fa-trash-alt delete"></i></td>
                         </tr>
             `;
-                document.querySelector(Selectors.selectedCourseList).innerHTML += slctcourse;
-                e.preventDefault();
+                    document.querySelector(Selectors.selectedCourseList).innerHTML += slctcourse;
+
+                }
             }
+            e.preventDefault();
         },
 
         deleteCourse: function(e) {
             if (e.target.classList.contains("delete")) {
                 e.target.parentElement.parentElement.remove();
+                console.log(document.getElementById("chooseBtn"));
             }
         }
     }
