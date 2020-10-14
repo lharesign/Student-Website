@@ -1,8 +1,8 @@
 // Course Controller
-const CourseController = (function() {
+const CourseController = (function () {
 
     // private
-    const Course = function(id, name, coursecode, year, point, school, schoolcode, date, period) {
+    const Course = function (id, name, coursecode, year, point, school, schoolcode, date, period) {
         this.id = id;
         this.name = name;
         this.coursecode = coursecode;
@@ -17,7 +17,7 @@ const CourseController = (function() {
     // Fetch From "courses.json"
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'courses.json', true);
-    xhr.onload = function() {
+    xhr.onload = function () {
         if (this.status === 200) {
             kurser = JSON.parse(this.responseText)
             return kurser;
@@ -64,10 +64,10 @@ const CourseController = (function() {
 
     // public
     return {
-        getCourses: function() {
+        getCourses: function () {
             return data.courses;
         },
-        getData: function() {
+        getData: function () {
             return data;
         }
     }
@@ -75,9 +75,11 @@ const CourseController = (function() {
 })();
 
 
+
+
 // UI Controller
 
-const UIController = (function() {
+const UIController = (function () {
     const Selectors = {
         courseList: "#courses",
         courseLink: ".link",
@@ -89,10 +91,12 @@ const UIController = (function() {
 
     return {
 
-        getSelectors: function() {
+        getSelectors: function () {
+            console.log(Selectors);
             return Selectors;
+
         },
-        createCourseList: function(courses) {
+        createCourseList: function (courses) {
 
             document.querySelectorAll(Selectors.courseLink).forEach(element => {
                 element.addEventListener('click', addCourseToList);
@@ -150,17 +154,17 @@ const UIController = (function() {
 
 
 // App Controller
-const App = (function(CourseCtrl, UICtrl) {
+const App = (function (CourseCtrl, UICtrl) {
 
     const UISelectors = UICtrl.getSelectors();
     // loadEventListeners
-    loadEventListener = function() {
+    loadEventListener = function () {
         document.getElementById("courses").addEventListener('click', selectedCourse);
         document.getElementById("selectedCourseList").addEventListener('click', deleteCourse);
         document.getElementById("moveOn").addEventListener('click', moveOn);
     }
 
-    selectedCourse = function(e) {
+    selectedCourse = function (e) {
         if (e.target.classList.contains("chooseBtn")) {
             let slctcourse = '';
 
@@ -176,20 +180,78 @@ const App = (function(CourseCtrl, UICtrl) {
         }
     }
 
-    deleteCourse = function(e) {
+
+    deleteCourse = function (e) {
         if (e.target.classList.contains("delete")) {
+            console.log(e.target.parentElement.parentElement);
             e.target.parentElement.parentElement.remove();
         }
     }
 
-    moveOn = function(e) {
+    moveOn = function (e) {
+
+        var selectArray = [];
+        /*var selectObject = {
+            course: null,
+            school: null,
+            points: null
+        };*/
+
+        var table = document.getElementById("selectedCourseList");
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            //console.log("The current row is : " + row);
+            //console.log("The individual cells are :");
+            //iterate through rows
+            //rows would be accessed using the "row" variable assigned in the for loop
+            var selectObject = {
+                course: null,
+                school: null,
+                points: null
+            };
+
+            for (var j = 0, col; col = row.cells[j]; j++) {
+                //console.log(col.textContent);
+
+                switch (j) {
+                    case 0: selectObject.course = col.textContent;
+                        break;
+                    case 1: selectObject.school = col.textContent;
+                        break;
+                    case 2: selectObject.points = col.textContent;
+                        break;
+                    default:
+                        break;
+                }
+                //iterate through columns
+                //columns would be accessed using the "col" variable assigned in the for loop
+
+            }
+
+            console.log("The current object : ", selectObject);
+            console.log(selectArray);
+            selectArray[i] = selectObject;
+
+            //console.log("Element " + i + "is ", selectArray[i]);
+
+        }
+        console.log("The entire array :", selectArray);
+        //for (let k = 0; k < selectArray.length; k++) {
+        //   console.log(selectArray[k]);
+        //}
+
+        function saveList () {
+            var jsonArray = JSON.stringify(selectArray);
+            localStorage.setItem("courseArray", jsonArray);
+        }
+        
+        saveList();
 
     }
 
 
 
     return {
-        init: function() {
+        init: function () {
             console.log('starting app...');
             const courses = CourseCtrl.getCourses();
 
@@ -215,7 +277,7 @@ var acc = document.getElementsByClassName("accordion");
 var i;
 
 for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
+    acc[i].addEventListener("click", function () {
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
         if (panel.style.display === "block") {

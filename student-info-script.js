@@ -114,7 +114,6 @@ function saveUpdates() {
         }
 
         localStorage.setItem('student', JSON.stringify(student))
-        var retrievedObject = localStorage.getItem('student');
     }
 
 }

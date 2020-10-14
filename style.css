@@ -34,7 +34,6 @@
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 #personal-info-container {
@@ -141,7 +140,7 @@
     padding: 10px;
 }
 
-td,th {
+td, th {
     width: 150px;
 }
 
@@ -159,7 +158,6 @@ footer {
     display: flex;
     flex-wrap: wrap;
 }
-
 
 .footer-part-container {
     flex: 1;
@@ -194,9 +192,9 @@ footer {
 
 .header-bar {
     background-color: #ae0b05;
-    padding:20px; 
-    color:white; 
-    font-size:1.5em;
+    padding: 20px;
+    color: white;
+    font-size: 1.5em;
     width: 100%;
 }
 
@@ -207,14 +205,14 @@ footer {
     cursor: pointer;
 }
 
-/* navigation bar*/         
+/* navigation bar*/
 
 .sticky {
     /*position: -webkit-sticky;*/
     position: sticky;
     top: 0;
     z-index: 1;
-  }
+}
 
 /*dropdown content links*/
 
@@ -247,11 +245,11 @@ footer {
 }
 
 .student-info-btn {
-    display:inline-block;
+    display: inline-block;
 }
 
 .personal-number {
-    /*display:none;              //ADD A FUNCTION TO DISPLAY/HIDE THIS    */ 
+    /*display:none;              //ADD A FUNCTION TO DISPLAY/HIDE THIS    */
     float: right;
     margin-left: 10px;
 }
@@ -272,6 +270,7 @@ footer {
 }
 
 /* Slideshow container */
+
 .slideshow-container {
     max-width: 1200px;
     position: relative;
@@ -284,8 +283,8 @@ footer {
 }
 
 /* Slide show Next & previous buttons */
-.prev,
-.next {
+
+.prev, .next {
     cursor: pointer;
     position: absolute;
     top: 40%;
@@ -300,12 +299,14 @@ footer {
 }
 
 /* Slide show Position the "next button" to the right */
+
 .next {
     right: 0;
     border-radius: 3px 0 0 3px;
 }
 
 /* Slider text */
+
 .slider-text {
     color: white;
     font-size: 1.2em;
@@ -322,4 +323,24 @@ footer {
     text-align: center;
     font-size: 1.2em;
     padding-bottom: 20px;
+}
+
+.review-page-content {
+    width: 80%;
+    margin: auto;
+}
+
+.table-container {
+    flex: 1;
+    max-width: 80%;
+    margin: auto;
+}
+
+.mt-3, .review-page-content {
+    margin-top: 50px;
+}
+
+.courses-table {
+    border-collapse: collapse;
+    margin-bottom: 50px;
 }
