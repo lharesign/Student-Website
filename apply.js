@@ -1,8 +1,8 @@
 // Course Controller
-const CourseController = (function () {
+const CourseController = (function() {
 
     // private
-    const Course = function (id, name, coursecode, year, point, school, schoolcode, date, period) {
+    const Course = function(id, name, coursecode, year, point, school, schoolcode, date, period) {
         this.id = id;
         this.name = name;
         this.coursecode = coursecode;
@@ -17,7 +17,7 @@ const CourseController = (function () {
     // Fetch From "courses.json"
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'courses.json', true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         if (this.status === 200) {
             kurser = JSON.parse(this.responseText)
             return kurser;
@@ -64,10 +64,10 @@ const CourseController = (function () {
 
     // public
     return {
-        getCourses: function () {
+        getCourses: function() {
             return data.courses;
         },
-        getData: function () {
+        getData: function() {
             return data;
         },
         getSelectedCourses: function() {
@@ -82,7 +82,7 @@ const CourseController = (function () {
 
 // UI Controller
 
-const UIController = (function () {
+const UIController = (function() {
     const Selectors = {
         courseList: "#courses",
         courseLink: ".link",
@@ -95,12 +95,12 @@ const UIController = (function () {
 
     return {
 
-        getSelectors: function () {
-            console.log(Selectors);
+        getSelectors: function() {
+            //console.log(Selectors);
             return Selectors;
 
         },
-        createCourseList: function (courses) {
+        createCourseList: function(courses) {
 
             document.querySelectorAll(Selectors.courseLink).forEach(element => {
                 element.addEventListener('click', addCourseToList);
@@ -156,7 +156,10 @@ const UIController = (function () {
             if (e.target.classList.contains("selected") != true) {
                 if (e.target.classList.contains("chooseBtn")) {
                     e.target.classList.add("selected");
-                    console.log(e.target.classList.contains("selected"));
+                    setTimeout(() => {
+                        e.target.classList.remove("selected");
+                    }, 5000);
+                    //console.log(e.target.classList.contains("selected"));
                     let slctcourse = '';
                     slctcourse += `
                          <tr>
@@ -176,7 +179,6 @@ const UIController = (function () {
         deleteCourse: function(e) {
             if (e.target.classList.contains("delete")) {
                 e.target.parentElement.parentElement.remove();
-                console.log(document.getElementById("chooseBtn"));
             }
         }
     }
@@ -186,17 +188,17 @@ const UIController = (function () {
 
 
 // App Controller
-const App = (function (CourseCtrl, UICtrl) {
+const App = (function(CourseCtrl, UICtrl) {
 
     const UISelectors = UICtrl.getSelectors();
     // loadEventListeners
-    loadEventListener = function () {
+    loadEventListener = function() {
         document.getElementById("courses").addEventListener('click', selectedCourse);
         document.getElementById("selectedCourseList").addEventListener('click', deleteCourse);
         document.getElementById("moveOn").addEventListener('click', moveOn);
     }
 
-    selectedCourse = function (e) {
+    selectedCourse = function(e) {
         if (e.target.classList.contains("chooseBtn")) {
             let slctcourse = '';
 
@@ -213,14 +215,14 @@ const App = (function (CourseCtrl, UICtrl) {
     }
 
 
-    deleteCourse = function (e) {
+    deleteCourse = function(e) {
         if (e.target.classList.contains("delete")) {
             console.log(e.target.parentElement.parentElement);
             e.target.parentElement.parentElement.remove();
         }
     }
 
-    moveOn = function (e) {
+    moveOn = function(e) {
 
         var selectArray = [];
         /*var selectObject = {
@@ -245,11 +247,14 @@ const App = (function (CourseCtrl, UICtrl) {
                 //console.log(col.textContent);
 
                 switch (j) {
-                    case 0: selectObject.course = col.textContent;
+                    case 0:
+                        selectObject.course = col.textContent;
                         break;
-                    case 1: selectObject.school = col.textContent;
+                    case 1:
+                        selectObject.school = col.textContent;
                         break;
-                    case 2: selectObject.points = col.textContent;
+                    case 2:
+                        selectObject.points = col.textContent;
                         break;
                     default:
                         break;
@@ -271,11 +276,11 @@ const App = (function (CourseCtrl, UICtrl) {
         //   console.log(selectArray[k]);
         //}
 
-        function saveList () {
+        function saveList() {
             var jsonArray = JSON.stringify(selectArray);
             localStorage.setItem("courseArray", jsonArray);
         }
-        
+
         saveList();
     }
 
@@ -297,7 +302,7 @@ const App = (function (CourseCtrl, UICtrl) {
 
 
     return {
-        init: function () {
+        init: function() {
             console.log('starting app...');
             const courses = CourseCtrl.getCourses();
 
@@ -322,7 +327,7 @@ var acc = document.getElementsByClassName("accordion");
 var i;
 
 for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
+    acc[i].addEventListener("click", function() {
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
         if (panel.style.display === "block") {
