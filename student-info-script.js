@@ -69,6 +69,7 @@ function editData() {
 // function to be called when user tries to save update
 function saveUpdates() {
     document.getElementById("displaymsg").style.display = "none";
+    //document.getElementById("displaymsg").innerHTML = "";
 
     var address = document.getElementById("adress").value;
     var postcode = document.getElementById("postnummer").value;
