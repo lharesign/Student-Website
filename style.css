@@ -433,3 +433,9 @@ footer {
     display: flex;
     flex-wrap: wrap;
 }
+
+/* Display obligatorisk warning msg*/
+
+#displaymsg {
+    color: red;
+}
