@@ -192,9 +192,9 @@ footer {
 
 .header-bar {
     background-color: #ae0b05;
-    padding:20px; 
-    color:white; 
-    font-size:1.3em;
+    padding: 20px;
+    color: white;
+    font-size: 1.3em;
     width: 100%;
 }
 
@@ -300,28 +300,31 @@ footer {
     padding-bottom: 20px;
 }
 
-
 /* courses webpage  box-model links*/
+
 .courses {
     width: 250px;
-    height:320px;
+    height: 320px;
     border: 5px solid maroon;
     padding: 20px;
     margin: 20px;
     float: right;
-  }
-  
-  .courses a { color: black }
-  
-  .courses:hover { 
-      background-color:rgb(224, 87, 87);
-  }
+}
 
-  /* individual coursse page*/
+.courses a {
+    color: black
+}
 
-  /* for apply button*/
-        .apply  {
-    background-color:brown;
+.courses:hover {
+    background-color: rgb(224, 87, 87);
+}
+
+/* individual coursse page*/
+
+/* for apply button*/
+
+.apply {
+    background-color: brown;
     width: 100px;
     height: auto;
     border: none;
@@ -333,24 +336,25 @@ footer {
     font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
-  }
+}
 
-  .apply a {
-      text-decoration: none;
-      color:white;
-  }
-  
-  /* for main image*/
-  .text {
-      width : 80%;
-      margin: auto;
-  }
+.apply a {
+    text-decoration: none;
+    color: white;
+}
 
-  .image {
-    margin:auto; 
-    width:100%; 
-    height:500px;
-  }
+/* for main image*/
+
+.text {
+    width: 80%;
+    margin: auto;
+}
+
+.image {
+    margin: auto;
+    width: 100%;
+    height: 500px;
+}
 
 .review-page-content {
     width: 80%;
@@ -414,7 +418,6 @@ footer {
     font-size: 15px;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    
 }
 
 .box-3-line:hover {
@@ -432,4 +435,90 @@ footer {
 .box-container-3-line {
     display: flex;
     flex-wrap: wrap;
+}
+
+.page-container {
+    width: 95%;
+    margin: auto;
+    display: flex;
+}
+
+.grid-left {
+    max-width: 23%;
+    flex: 1;
+}
+
+.grid-right {
+    flex: 1;
+    max-width: 76%;
+}
+
+.courses a {
+    text-decoration: none;
+}
+
+.accordion-title {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.list-group {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.accordion-panel {
+    padding: 0 18px;
+    background-color: #dadada;
+    display: none;
+    height: auto;
+    border-top: 1px solid #e5e5e5;
+    padding: 10px 10px;
+}
+
+.accordion-panel ul {
+    margin-left: 30px;
+    list-style-type: none;
+    background-color: #dadada;
+    margin: 0;
+    padding: 0;
+}
+
+.accordion-panel ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.accordion-panel ul a {
+    color: black;
+    text-decoration: none;
+}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.accordion-panel ul a:hover {
+    text-decoration: underline;
+}
+
+#myMenu>button.active,
+.accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    overflow: hidden;
 }
