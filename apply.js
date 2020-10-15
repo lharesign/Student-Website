@@ -3,6 +3,7 @@ const StorageController = (function() {
 
     return {
         setCourses: function(newSelectedCourse) {
+            localStorage.clear();
             let selectedCourses;
             if (localStorage.getItem('selectedCourses') === null) {
                 selectedCourses = [];
@@ -236,7 +237,7 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
         document.querySelector(UISelectors.moveOn).addEventListener('click', moveOn);
     }
 
-    moveOn = function(e) {
+    moveOn = function() {
         const tr = document.querySelector(UISelectors.selectedCourseList).children;
         for (let i = 0; i < tr.length; i++) {
             const element = tr[i];
@@ -258,69 +259,6 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
         //e.preventDefault();
     }
 
-
-
-    /*moveOn = function(e) {
-
-        //  var selectArray = [];
-        //var selectObject = {
-        //        course: null,
-        //      school: null,
-        //        points: null
-        //  };
-
-        var table = document.getElementById("selectedCourseList");
-        for (var i = 0, row; row = table.rows[i]; i++) {
-            //console.log("The current row is : " + row);
-            //console.log("The individual cells are :");
-            //iterate through rows
-            //rows would be accessed using the "row" variable assigned in the for loop
-            var selectObject = {
-                course: null,
-                school: null,
-                points: null
-            };
-
-            for (var j = 0, col; col = row.cells[j]; j++) {
-                //console.log(col.textContent);
-
-                switch (j) {
-                    case 0:
-                        selectObject.course = col.textContent;
-                        break;
-                    case 1:
-                        selectObject.school = col.textContent;
-                        break;
-                    case 2:
-                        selectObject.points = col.textContent;
-                        break;
-                    default:
-                        break;
-                }
-                //iterate through columns
-                //columns would be accessed using the "col" variable assigned in the for loop
-
-            }
-
-           // console.log("The current object : ", selectObject);
-            //console.log(selectArray);
-            selectArray[i] = selectObject;
-
-            //console.log("Element " + i + "is ", selectArray[i]);
-
-        }
-       // console.log("The entire array :", selectArray);
-        //for (let k = 0; k < selectArray.length; k++) {
-        //   console.log(selectArray[k]);
-        //}
-
-        function saveList() {
-            var jsonArray = JSON.stringify(selectArray);
-            localStorage.setItem("courseArray", jsonArray);
-        }
-
-        saveList();
-    }*/
 
     selectedCourse = function(e) {
         UICtrl.addCourse(e);
