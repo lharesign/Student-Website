@@ -78,6 +78,7 @@ function saveUpdates() {
 
     if ((address.length === 0) || (postcode.length === 0) || (town.length === 0) || (mobile.length === 0) || (emailAddress.length === 0) || (emailConfirm.length === 0) || (homeCommunity.length === 0)) {
         success = false;
+        document.getElementById("displaymsg").innerHTML = "Du måste fylla i det obligatoriska(*) fältet";
         for (let i = 0; i < asterix.length; i++) {
             asterix[i].style.display = "inline";
         }

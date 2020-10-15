@@ -12,7 +12,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-        <a class="navbar-brand" href="index.html"><i class="fas fa-school"></i></a>
+        <a class="navbar-brand" href="#"><i class="fas fa-school"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -72,19 +72,19 @@
                         <p class="text-muted">Studietakt - Skriv önskat startdatum samt om du vill studera på 100, 75, 50 eller 25%. *</p>
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="studietakt1" name="studietakt" class="custom-control-input">
-                            <label class="custom-control-label" for="studietakt1">100%</label>
+                            <label class="custom-control-label" for="studietakt1">100<span>%</span></label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="studietakt2" name="studietakt" class="custom-control-input">
-                            <label class="custom-control-label" for="studietakt2">75%</label>
+                            <label class="custom-control-label" for="studietakt2">75<span>%</span></label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="studietakt3" name="studietakt" class="custom-control-input">
-                            <label class="custom-control-label" for="studietakt3">50%</label>
+                            <label class="custom-control-label" for="studietakt3">50<span>%</span></label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="studietakt4" name="studietakt" class="custom-control-input">
-                            <label class="custom-control-label" for="studietakt4">25%</label>
+                            <label class="custom-control-label" for="studietakt4">25<span>%</span></label>
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                             <textarea class="form-control" id="motivering" rows="3"></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary"><a id="skicka-btn" href="confirm-application.html" onclick="saveMotivering()">Skicka</a></button>
+                    <button type="submit" class="btn btn-primary">Skicka</button>
                 </form>
 
             </div>
@@ -109,7 +109,31 @@
 
 
 
+    <script>
+        loadCourses = function() {
+            if (localStorage.getItem('selectedCourses') === null) {
+                selectedCourses = [];
+            } else {
+                selectedCourses = JSON.parse(localStorage.getItem('selectedCourses'));
+                let tr = '';
+                for (let i = 0; i < selectedCourses.length; i++) {
+                    const element = selectedCourses[i];
+                    tr += `
+                        <tr>
+                            <td>${element.name}</td>
+                            <td>${element.school}</td>
+                            <td>${element.point}</td>
+                        </tr>
+                    `;
+                    document.querySelector("#komplSelectedCourse").innerHTML = tr;
 
+                }
+            }
+            return selectedCourses;
+        }
+
+        loadCourses();
+    </script>
     <script src="apply.js" type="text/Javascript"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

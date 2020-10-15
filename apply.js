@@ -1,8 +1,36 @@
+// Storage Controller
+const StorageController = (function() {
+
+    return {
+        setCourses: function(newSelectedCourse) {
+            let selectedCourses;
+            if (localStorage.getItem('selectedCourses') === null) {
+                selectedCourses = [];
+                selectedCourses.push(newSelectedCourse);
+            } else {
+                selectedCourses = JSON.parse(localStorage.getItem('selectedCourses'));
+                selectedCourses.push(newSelectedCourse);
+            }
+            localStorage.setItem('selectedCourses', JSON.stringify(selectedCourses));
+        },
+
+        getCourses: function() {
+            let selectedCourses;
+            if (localStorage.getItem('selectedCourses') == null) {
+                selectedCourses = [];
+            } else {
+                selectedCourses = JSON.parse(localStorage.getItem('selectedCourses'));
+            }
+            return selectedCourses;
+        }
+    }
+})();
+
 // Course Controller
-const CourseController = (function () {
+const CourseController = (function() {
 
     // private
-    const Course = function (id, name, coursecode, year, point, school, schoolcode, date, period) {
+    const Course = function(id, name, coursecode, year, point, school, schoolcode, date, period) {
         this.id = id;
         this.name = name;
         this.coursecode = coursecode;
@@ -17,7 +45,7 @@ const CourseController = (function () {
     // Fetch From "courses.json"
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'courses.json', true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         if (this.status === 200) {
             kurser = JSON.parse(this.responseText)
             return kurser;
@@ -53,25 +81,35 @@ const CourseController = (function () {
             { id: 'svame', name: 'Svenska som andraspråk', coursecode: 'GRNSVA2', year: 2020, point: 700, school: 'Merit', schoolcode: 'ME GRNSVA2 DG', date: '30 dec 2019 - 3 jan 2021', period: 'Dag' },
             { id: 'svame', name: 'Svenska som andraspråk', coursecode: 'GRNSVA2', year: 2020, point: 700, school: 'Merit', schoolcode: 'ME GRNSVA2 KV', date: '30 dec 2019 - 3 jan 2021', period: 'Kväll' }
         ],
-        selectedCourses: [],
-        totalPoint: 0
+        selectedCourses: StorageController.getCourses()
     }
 
-
-
+    const SelectedCourse = function(name, school, point) {
+        this.name = name;
+        this.school = school;
+        this.point = point;
+    }
 
 
 
     // public
     return {
-        getCourses: function () {
+        getCourses: function() {
             return data.courses;
         },
-        getData: function () {
+
+        getData: function() {
             return data;
         },
-        getSelectedCourses: function () {
+
+        getSelectedCourses: function() {
             return data.selectedCourses;
+        },
+
+        addSelectedCourseToArray: function(course, school, point) {
+            const newSelectedCourse = new SelectedCourse(course, school, point);
+            data.selectedCourses.push(newSelectedCourse);
+            return newSelectedCourse;
         }
     }
 
@@ -82,7 +120,7 @@ const CourseController = (function () {
 
 // UI Controller
 
-const UIController = (function () {
+const UIController = (function() {
     const Selectors = {
         courseList: "#courses",
         courseLink: ".link",
@@ -90,17 +128,17 @@ const UIController = (function () {
         courseTitle: "#courseTitle",
         chooseBtn: "#chooseBtn",
         selectedCourseList: "#selectedCourseList",
-        komplSelectedCourse: "#komplSelectedCourse"
+        komplSelectedCourse: "#komplSelectedCourse",
+        moveOn: "#moveOn"
     }
 
     return {
 
-        getSelectors: function () {
-            //console.log(Selectors);
+        getSelectors: function() {
             return Selectors;
 
         },
-        createCourseList: function (courses) {
+        createCourseList: function(courses) {
 
             document.querySelectorAll(Selectors.courseLink).forEach(element => {
                 element.addEventListener('click', addCourseToList);
@@ -151,7 +189,7 @@ const UIController = (function () {
 
 
         },
-        addCourse: function (e) {
+        addCourse: function(e) {
 
             if (e.target.classList.contains("selected") != true) {
                 if (e.target.classList.contains("chooseBtn")) {
@@ -176,7 +214,7 @@ const UIController = (function () {
             e.preventDefault();
         },
 
-        deleteCourse: function (e) {
+        deleteCourse: function(e) {
             if (e.target.classList.contains("delete")) {
                 e.target.parentElement.parentElement.remove();
             }
@@ -188,46 +226,53 @@ const UIController = (function () {
 
 
 // App Controller
-const App = (function (CourseCtrl, UICtrl) {
+const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
 
     const UISelectors = UICtrl.getSelectors();
     // loadEventListeners
-    loadEventListener = function () {
-        document.getElementById("courses").addEventListener('click', selectedCourse);
-        document.getElementById("selectedCourseList").addEventListener('click', deleteCourse);
-        document.getElementById("moveOn").addEventListener('click', moveOn);
+    loadEventListener = function() {
+        document.querySelector(UISelectors.courseList).addEventListener('click', selectedCourse);
+        document.querySelector(UISelectors.selectedCourseList).addEventListener('click', deleteCourse);
+        document.querySelector(UISelectors.moveOn).addEventListener('click', moveOn);
     }
 
-    selectedCourse = function (e) {
-        if (e.target.classList.contains("chooseBtn")) {
-            let slctcourse = '';
+    moveOn = function(e) {
+        const tr = document.querySelector(UISelectors.selectedCourseList).children;
+        for (let i = 0; i < tr.length; i++) {
+            const element = tr[i];
+            const course = element.firstElementChild.textContent;
+            const school = element.firstElementChild.nextElementSibling.textContent;
+            const point = element.lastElementChild.previousElementSibling.textContent;
 
-            slctcourse += `
-                         <tr>
-                            <td>${e.target.parentElement.parentElement.firstElementChild.textContent}</td>
-                            <td>${e.target.parentElement.parentElement.nextElementSibling.firstElementChild.textContent}</td>
-                            <td>${e.target.parentElement.previousElementSibling.textContent}</td>
-                            <td><i class="fas fa-trash-alt delete"></i></td>
-                        </tr>
-            `;
-            document.querySelector(UISelectors.selectedCourseList).innerHTML += slctcourse;
+            // console.log(course, school, point);
+
+            if (course !== '' && school !== '' && point !== '') {
+                // Add selected course
+                const newSelectedCourse = CourseCtrl.addSelectedCourseToArray(course, school, point);
+
+                // add course to LS
+                StorageCtrl.setCourses(newSelectedCourse);
+            }
         }
+
+        //e.preventDefault();
     }
 
 
-    deleteCourse = function (e) {
-        if (e.target.classList.contains("delete")) {
-            console.log(e.target.parentElement.parentElement);
-            e.target.parentElement.parentElement.remove();
-        }
-    }
 
-    moveOn = function (e) {
+    /*moveOn = function(e) {
 
-        var selectArray = [];
+        //  var selectArray = [];
+        //var selectObject = {
+        //        course: null,
+        //      school: null,
+        //        points: null
+        //  };
 
         var table = document.getElementById("selectedCourseList");
         for (var i = 0, row; row = table.rows[i]; i++) {
+            //console.log("The current row is : " + row);
+            //console.log("The individual cells are :");
             //iterate through rows
             //rows would be accessed using the "row" variable assigned in the for loop
             var selectObject = {
@@ -237,6 +282,7 @@ const App = (function (CourseCtrl, UICtrl) {
             };
 
             for (var j = 0, col; col = row.cells[j]; j++) {
+                //console.log(col.textContent);
 
                 switch (j) {
                     case 0:
@@ -256,10 +302,17 @@ const App = (function (CourseCtrl, UICtrl) {
 
             }
 
+           // console.log("The current object : ", selectObject);
+            //console.log(selectArray);
             selectArray[i] = selectObject;
 
+            //console.log("Element " + i + "is ", selectArray[i]);
 
         }
+       // console.log("The entire array :", selectArray);
+        //for (let k = 0; k < selectArray.length; k++) {
+        //   console.log(selectArray[k]);
+        //}
 
         function saveList() {
             var jsonArray = JSON.stringify(selectArray);
@@ -267,27 +320,21 @@ const App = (function (CourseCtrl, UICtrl) {
         }
 
         saveList();
-    }
+    }*/
 
-
-    loadEventListener = function () {
-        document.querySelector(UISelectors.courseList).addEventListener('click', selectedCourse);
-        document.querySelector(UISelectors.selectedCourseList).addEventListener('click', deleteCourse);
-    }
-
-    selectedCourse = function (e) {
+    selectedCourse = function(e) {
         UICtrl.addCourse(e);
         e.preventDefault();
     }
 
-    deleteCourse = function (e) {
+    deleteCourse = function(e) {
         UICtrl.deleteCourse(e);
         e.preventDefault();
     }
 
 
     return {
-        init: function () {
+        init: function() {
             console.log('starting app...');
             const courses = CourseCtrl.getCourses();
 
@@ -300,72 +347,11 @@ const App = (function (CourseCtrl, UICtrl) {
     }
 
 
-})(CourseController, UIController);
+})(CourseController, UIController, StorageController);
 
 App.init();
 
-function saveMotivering() {
 
-    var motiveringAnswers = {
-        studiemedel: null,
-        studietakt: null,
-        motivering: null
-    }
-
-    motiveringAnswers.studiemedel = getStudiemedel();
-    console.log("The studiemedel : ", motiveringAnswers.studiemedel);
-    motiveringAnswers.studietakt = getStudietakt();
-    console.log("The studietakt : ", motiveringAnswers.studie);
-    motiveringAnswers.motivering = getMotivering();
-    console.log("The motivering : ", motiveringAnswers.motivering);
-    
-    function saveMotiveringToLocal() {
-        var jsonArray = JSON.stringify(motiveringAnswers);
-        localStorage.setItem("motiveringAnswers", jsonArray);
-    }
-
-    saveMotiveringToLocal();
-}
-
-function getStudiemedel () {
-    var response;
-    
-    if (document.getElementById('studiemedel1').checked) {
-        response = 'studiemedel1'; // Yes
-    } else if (document.getElementById('studiemedel2').checked) {
-        response = 'studiemedel1'; //No
-    }
-
-    var medel = document.getElementById(response).nextElementSibling.innerHTML;
-    return medel;
-
-}
-
-function getStudietakt () {
-    var response;
-    
-    if (document.getElementById('studietakt1').checked) {
-        response = 'studietakt1'; // 25%
-    } else if (document.getElementById('studietakt2').checked) {
-        response = 'studietakt2'; //50%
-    } else if (document.getElementById('studietakt3').checked) {
-        response = 'studietakt3'; // 75%
-    } else if (document.getElementById('studietakt4').checked) {
-        response = 'studietakt4'; // 100%
-    } 
-
-    var takt = document.getElementById(response).nextElementSibling.innerHTML;
-    return takt;
-
-}
-
-function getMotivering () {
-    var response;
-    console.log("Inside Motivering");
-    response = document.getElementById("motivering").value;
-    return response;
-
-}
 
 // accordion
 
@@ -373,7 +359,7 @@ var i;var acc = document.getElementsByClassName("accordion");
 
 
 for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
+    acc[i].addEventListener("click", function() {
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
         if (panel.style.display === "block") {
