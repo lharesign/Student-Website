@@ -260,19 +260,12 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
 
 
 
-    /*moveOn = function(e) {
+    moveOn = function(e) {
 
-        //  var selectArray = [];
-        //var selectObject = {
-        //        course: null,
-        //      school: null,
-        //        points: null
-        //  };
+        var selectArray = [];
 
         var table = document.getElementById("selectedCourseList");
         for (var i = 0, row; row = table.rows[i]; i++) {
-            //console.log("The current row is : " + row);
-            //console.log("The individual cells are :");
             //iterate through rows
             //rows would be accessed using the "row" variable assigned in the for loop
             var selectObject = {
@@ -282,7 +275,6 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
             };
 
             for (var j = 0, col; col = row.cells[j]; j++) {
-                //console.log(col.textContent);
 
                 switch (j) {
                     case 0:
@@ -315,12 +307,13 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
         //}
 
         function saveList() {
+            console.log(selectArray);
             var jsonArray = JSON.stringify(selectArray);
             localStorage.setItem("courseArray", jsonArray);
         }
 
         saveList();
-    }*/
+    }
 
     selectedCourse = function(e) {
         UICtrl.addCourse(e);
@@ -352,10 +345,76 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
 App.init();
 
 
+function saveMotivering() {
+
+    var motiveringAnswers = {
+        studiemedel: null,
+        studietakt: null,
+        motivering: null
+    }
+
+    motiveringAnswers.studiemedel = getStudiemedel();
+    console.log("The studiemedel : ", motiveringAnswers.studiemedel);
+    motiveringAnswers.studietakt = getStudietakt();
+    console.log("The studietakt : ", motiveringAnswers.studietakt);
+    motiveringAnswers.motivering = getMotivering();
+    console.log("The motivering : ", motiveringAnswers.motivering);
+
+    function saveMotiveringToLocal() {
+        var jsonArray = JSON.stringify(motiveringAnswers);
+        localStorage.setItem("motiveringAnswers", jsonArray);
+    }
+
+    saveMotiveringToLocal();
+}
+
+function getStudiemedel () {
+    var response;
+
+    if (document.getElementById('studiemedel1').checked) {
+        response = 'studiemedel1'; // Yes
+    } else if (document.getElementById('studiemedel2').checked) {
+        response = 'studiemedel2'; //No
+    }
+
+    console.log(response);
+    var medel = document.getElementById(response).nextElementSibling.innerHTML;
+    console.log(medel);
+    return medel;
+
+}
+
+function getStudietakt () {
+    var response;
+
+    if (document.getElementById('studietakt1').checked) {
+        response = 'studietakt1'; // 25%
+    } else if (document.getElementById('studietakt2').checked) {
+        response = 'studietakt2'; //50%
+    } else if (document.getElementById('studietakt3').checked) {
+        response = 'studietakt3'; // 75%
+    } else if (document.getElementById('studietakt4').checked) {
+        response = 'studietakt4'; // 100%
+    } 
+
+    var takt = document.getElementById(response).nextElementSibling.innerHTML;
+    return takt;
+
+}
+
+function getMotivering () {
+    var response;
+    response = document.getElementById("motivering").value;
+    return response;
+
+}
+
+
 
 // accordion
 
-var i;var acc = document.getElementsByClassName("accordion");
+var i;
+var acc = document.getElementsByClassName("accordion");
 
 
 for (i = 0; i < acc.length; i++) {
@@ -369,4 +428,3 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
-
