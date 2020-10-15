@@ -237,6 +237,10 @@ footer {
     cursor: pointer;
 }
 
+.student-text:hover {
+    text-decoration: underline;
+}
+
 .search-bar {
     float: right;
     margin-top: 2px;
