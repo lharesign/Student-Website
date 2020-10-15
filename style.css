@@ -210,6 +210,10 @@ footer {
     color: white;
 }
 
+.kurser-btn:hover {
+    text-decoration: underline;
+}
+
 /* navigation bar*/
 
 .sticky {
@@ -305,18 +309,20 @@ footer {
 .courses {
     width: 250px;
     height: 320px;
-    border: 5px solid maroon;
+    border: 3px solid maroon;
     padding: 20px;
     margin: 20px;
     float: right;
+    transition: all 1s ease;
 }
 
 .courses a {
-    color: black
+    color: black;
 }
 
 .courses:hover {
-    background-color: rgb(224, 87, 87);
+    background-color: rgb(250, 167, 167);
+    transform : scale(1.05);
 }
 
 /* individual coursse page*/
