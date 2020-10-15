@@ -1,52 +1,54 @@
-var coursesCompleted =  {
-        kursNamn: "HTML",
-        slutDatum: "19/09/2020",
-        betyg: "A",
-        points: 100
+//adding in three courses that have been completed to be displayed as certificates
+
+var coursesCompleted = {
+    kursNamn: "HTML",
+    slutDatum: "19/09/2020",
+    betyg: "A",
+    points: 100
 };
-var coursesCompletedX =  {
-        kursNamn: "CSS",
-        slutDatum: "30/09/2020",
-        betyg: "B",
-        points: 200
+
+var coursesCompletedX = {
+    kursNamn: "CSS",
+    slutDatum: "30/09/2020",
+    betyg: "B",
+    points: 200
 };
-var coursesCompletedY =  {
+
+var coursesCompletedY = {
     kursNamn: "JavaScript",
     slutDatum: "10/10/2020",
     betyg: "C",
     points: 300
 };
 
+//adding in the courses to a coursesArray
 var coursesArray = [coursesCompleted, coursesCompletedX, coursesCompletedY];
-console.log(coursesArray);
 
-
+//retrieving student information from local storage
 var student = localStorage.getItem('student');
 student = JSON.parse(student);
-console.log(student);
 
 
 
+//function for creating certificates using javascript
+function createCertificate() {
 
-function createCertificate () {
+    //looping through the courses array to take the course information saved in the objects of the array
+    for (let i = 0; i < coursesArray.length; i++) {
+        var student_name = student["forrnamn"] + " " + student["efternamn"];
+        var kursNamn = coursesArray[i]["kursNamn"];
+        var slutDatum = coursesArray[i]["slutDatum"];
 
-    for(let i= 0; i < coursesArray.length; i++) {
-    var student_name = student["forrnamn"] + " " + student["efternamn"];
-    var kursNamn = coursesArray[i]["kursNamn"];
-    var slutDatum = coursesArray[i]["slutDatum"];
-    
-    
-    var main_node = document.getElementById("certificates-container");
-    console.log("The main node : " + main_node);
-    var div_node_model_c = document.createElement('div');
-    div_node_model_c.setAttribute("class", "modal-container");
-    console.log("The div node : " + div_node_model_c);
-    
-    main_node.appendChild(div_node_model_c);
+        //retrieving the certificates container
+        var main_node = document.getElementById("certificates-container");
+        var div_node_model_c = document.createElement('div');
+        //creating a div element with css class modal-container
+        div_node_model_c.setAttribute("class", "modal-container");
+        //appending div to certificates container
+        main_node.appendChild(div_node_model_c);
 
-    console.log(main_node);
-
-    var nodes = "<div class=\"certificate\" onclick=\"displayModal(this)\"> \
+        //setting nodes to HTML information with course information variables inside
+        var nodes = "<div class=\"certificate\" onclick=\"displayModal(this)\"> \
                     <h3 class=\"kurstitle\">" + kursNamn + "</h3> \
                  </div> \
                  <div class=\"modal\"> \
@@ -62,36 +64,27 @@ function createCertificate () {
                         <h3><em>on <span class=\"slutDatum\">" + slutDatum + "</span></em></h3> \
                     </div> \
                 </div>";
-    document.getElementsByClassName("modal-container")[i].innerHTML = nodes;
-
-    //Fix the html so it displays properly with escape chars and then add modal boxes
-    
-    
-    
-    
-    /*console.log(student_name);
-    document.getElementById("namn").innerHTML = student_name;
-    document.getElementById("kursNamn").innerHTML = coursesArray[i]["kursNamn"];
-    document.getElementById("slutDatum").innerHTML = coursesArray[i]["slutDatum"];*/
+        //setting innerHTML of modal container to equals nodes HTML above
+        document.getElementsByClassName("modal-container")[i].innerHTML = nodes;
     }
 }
 
+//function that displays the certificate when the user clicks on the associated buttons
 function displayModal(element) {
 
+    //displays the modal div when the certificates div is clicked
     var modal = element.nextElementSibling;
     modal.style.display = "block";
 
-    console.log("The modal " + modal);
+    //if the user presses the cross when modal is displayed, close the modal
     var cross = modal.getElementsByClassName("close")[0];
-    cross.addEventListener("click", function() {
-        
-    /*console.log("The firstChild " + cross);*/
-    if(modal.style.display == "block") {
-        modal.style.display = "none";
-    }
+    cross.addEventListener("click", function () {
+
+        if (modal.style.display == "block") {
+            modal.style.display = "none";
+        }
     })
-    /*var cert = cross.nextElementSibling;
-    cert.style.display = "block";*/
+
 }
 
 
@@ -144,7 +137,7 @@ for (let i = 0; i < modalDoc.length; i++) {
         var modalBox = this.nextElementSibling;
         let modalContent = modalBox.querySelector('.modal-content');
         let captionText = modalBox.querySelector('.modal-caption');
-        
+
         // Display modalBox, set modal-content src and alt to modal-doc src and alt
         modalBox.style.display = "block";
         modalContent.src = modalDoc[i].src;
@@ -155,7 +148,7 @@ for (let i = 0; i < modalDoc.length; i++) {
 
             // Display modalBox
             modalBox.style.display = "none";
-    
+
         });
     }
     );
