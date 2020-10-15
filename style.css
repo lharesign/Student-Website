@@ -439,3 +439,7 @@ footer {
 #displaymsg {
     color: red;
 }
+
+.personal-number {
+    display: none;
+}

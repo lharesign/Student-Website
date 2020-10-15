@@ -13,3 +13,9 @@ function showSlides(n) {
     if (n < 1) { slideIndex = slides.length } for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
     slides[slideIndex - 1].style.display = "block";
 }
+
+function visibleFunction() {
+    console.log("Inside visibility function");
+    document.getElementsByClassName("personal-number")[0].style.display = "inline-block";
+
+}
