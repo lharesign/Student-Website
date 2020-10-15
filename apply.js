@@ -293,8 +293,8 @@ App.init();
 
 // accordion
 
-var acc = document.getElementsByClassName("accordion");
-var i;
+var i;var acc = document.getElementsByClassName("accordion");
+
 
 for (i = 0; i < acc.length; i++) {
     acc[i].addEventListener("click", function() {
@@ -307,3 +307,4 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
+

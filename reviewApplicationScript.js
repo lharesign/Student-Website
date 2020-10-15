@@ -1,3 +1,4 @@
+//creating blank retrievedStudent object, empty retrievedCourses array and retrievedMotivering object
 var retrievedStudent = {
     personnummer: null,
     forrnamn: null,
@@ -22,9 +23,10 @@ var retrievedMotivering = {
     motivering: null
 }
 
+//updating retrievedStudent, retrievedCourses and retrievedMotivering with data
+//saved in local storage
 function loadCourses() {
     retrievedCourses = JSON.parse(localStorage.getItem("courseArray"));
-    console.log(retrievedCourses);
 }
 
 function loadStudentInfo() {
@@ -41,8 +43,7 @@ loadStudentInfo();
 loadMotiveringAnswers();
 
 
-console.log(retrievedMotivering);
-
+//function for inserting student information into the HTML spans
 function insertStudentInformation() {
 
     for (var key in retrievedStudent) {
@@ -55,14 +56,11 @@ function insertStudentInformation() {
     }
 }
 
-insertStudentInformation();
-console.log(typeof (retrievedCourses));
-function insertCourtInformation() {
+//function for inserting course information into a table in HTML
+function insertCourseInformation() {
     for (let i = 0; i < retrievedCourses.length; i++) {
         let slctcourse = "<tr>";
         for (let key in retrievedCourses[i]) {
-            console.log(retrievedCourses[i][key]);
-
             slctcourse += "<td>" + retrievedCourses[i][key] + "</td>";
         }
         slctcourse += "<tr>";
@@ -70,19 +68,18 @@ function insertCourtInformation() {
     }
 }
 
-insertCourtInformation();
-
+//function for inserting motivering information into a table in HTML
 function insertMotivering() {
-    
-        let motivering = "<br>";
-        for (let key in retrievedMotivering) {
-            console.log(retrievedMotivering[key]);
-            motivering  += "<tr><td class= \"bold-text\">" + key + "</td>";
-            motivering  += "<td class=\"wide-field\">" + retrievedMotivering[key] + "</td></tr>";
-        }
-        document.getElementById("motiveringList").innerHTML += motivering;
+
+    let motivering = "<br>";
+    for (let key in retrievedMotivering) {
+        console.log(retrievedMotivering[key]);
+        motivering += "<tr><td class= \"bold-text\">" + key + "</td>";
+        motivering += "<td class=\"wide-field\">" + retrievedMotivering[key] + "</td></tr>";
     }
+    document.getElementById("motiveringList").innerHTML += motivering;
+}
 
-
-
+insertCourseInformation();
+insertStudentInformation();
 insertMotivering()
