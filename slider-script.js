@@ -1,11 +1,15 @@
+//beginning slideshow on first slide and displaying it
 var slideIndex = 1;
 showSlides(slideIndex);
+
+//function for updating slides
 function plusSlides(n) {
     showSlides(slideIndex += n);
 }
 function currentSlide(n) {
     showSlides(slideIndex = n);
 }
+//function for displaying slides, and allowing us to loop around from 1 back to 4, and from 4 to 1
 function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
