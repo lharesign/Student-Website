@@ -298,7 +298,6 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
         }
 
         function saveList() {
-            console.log(selectArray);
             var jsonArray = JSON.stringify(selectArray);
             localStorage.setItem("courseArray", jsonArray);
         }
@@ -345,11 +344,8 @@ function saveMotivering() {
     }
 
     motiveringAnswers.studiemedel = getStudiemedel();
-    console.log("The studiemedel : ", motiveringAnswers.studiemedel);
     motiveringAnswers.studietakt = getStudietakt();
-    console.log("The studietakt : ", motiveringAnswers.studietakt);
     motiveringAnswers.motivering = getMotivering();
-    console.log("The motivering : ", motiveringAnswers.motivering);
 
     function saveMotiveringToLocal() {
         var jsonArray = JSON.stringify(motiveringAnswers);
@@ -368,9 +364,7 @@ function getStudiemedel () {
         response = 'studiemedel2'; //No
     }
 
-    console.log(response);
     var medel = document.getElementById(response).nextElementSibling.innerHTML;
-    console.log(medel);
     return medel;
 
 }
