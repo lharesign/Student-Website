@@ -111,18 +111,18 @@
 
     <script>
         loadCourses = function() {
-            if (localStorage.getItem('selectedCourses') == null) {
+            if (localStorage.getItem('courseArray') == null) {
                 selectedCourses = [];
             } else {
-                selectedCourses = JSON.parse(localStorage.getItem('selectedCourses'));
+                selectedCourses = JSON.parse(localStorage.getItem('courseArray'));
                 let tr = '';
                 for (let i = 0; i < selectedCourses.length; i++) {
                     const element = selectedCourses[i];
                     tr += `
                         <tr>
-                            <td>${element.name}</td>
+                            <td>${element.course}</td>
                             <td>${element.school}</td>
-                            <td>${element.point}</td>
+                            <td>${element.points}</td>
                         </tr>
                     `;
                     document.querySelector("#komplSelectedCourse").innerHTML = tr;

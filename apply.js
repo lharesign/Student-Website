@@ -356,7 +356,7 @@ function saveMotivering() {
     saveMotiveringToLocal();
 }
 
-function getStudiemedel () {
+function getStudiemedel() {
     var response;
 
     if (document.getElementById('studiemedel1').checked) {
@@ -370,7 +370,7 @@ function getStudiemedel () {
 
 }
 
-function getStudietakt () {
+function getStudietakt() {
     var response;
 
     if (document.getElementById('studietakt1').checked) {
@@ -381,14 +381,14 @@ function getStudietakt () {
         response = 'studietakt3'; // 75%
     } else if (document.getElementById('studietakt4').checked) {
         response = 'studietakt4'; // 100%
-    } 
+    }
 
     var takt = document.getElementById(response).nextElementSibling.innerHTML;
     return takt;
 
 }
 
-function getMotivering () {
+function getMotivering() {
     var response;
     response = document.getElementById("motivering").value;
     return response;
@@ -413,8 +413,4 @@ for (i = 0; i < acc.length; i++) {
             panel.style.display = "block";
         }
     });
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8175647de4b054d62d35fc4dacd75571651841bb
