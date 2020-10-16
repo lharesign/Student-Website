@@ -3,12 +3,13 @@ const StorageController = (function() {
 
     return {
         setCourses: function(newSelectedCourse) {
-            localStorage.clear();
+
             let selectedCourses;
-            if (localStorage.getItem('selectedCourses') === null) {
+            if (localStorage.getItem('selectedCourses') == null) {
                 selectedCourses = [];
                 selectedCourses.push(newSelectedCourse);
             } else {
+                localStorage.clear();
                 selectedCourses = JSON.parse(localStorage.getItem('selectedCourses'));
                 selectedCourses.push(newSelectedCourse);
             }
@@ -139,6 +140,7 @@ const UIController = (function() {
             return Selectors;
 
         },
+        // show courses on UI
         createCourseList: function(courses) {
 
             document.querySelectorAll(Selectors.courseLink).forEach(element => {
@@ -190,6 +192,8 @@ const UIController = (function() {
 
 
         },
+
+        //to choose courses what you want from list
         addCourse: function(e) {
 
             if (e.target.classList.contains("selected") != true) {
@@ -214,7 +218,7 @@ const UIController = (function() {
             }
             e.preventDefault();
         },
-
+        // delete course from UI that you don't want
         deleteCourse: function(e) {
             if (e.target.classList.contains("delete")) {
                 e.target.parentElement.parentElement.remove();
@@ -251,7 +255,7 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
                 // Add selected course
                 const newSelectedCourse = CourseCtrl.addSelectedCourseToArray(course, school, point);
 
-                // add course to LS
+                // add course to LocalStorage
                 StorageCtrl.setCourses(newSelectedCourse);
             }
         }
@@ -355,7 +359,7 @@ function saveMotivering() {
     saveMotiveringToLocal();
 }
 
-function getStudiemedel () {
+function getStudiemedel() {
     var response;
 
     if (document.getElementById('studiemedel1').checked) {
@@ -369,7 +373,7 @@ function getStudiemedel () {
 
 }
 
-function getStudietakt () {
+function getStudietakt() {
     var response;
 
     if (document.getElementById('studietakt1').checked) {
@@ -380,14 +384,14 @@ function getStudietakt () {
         response = 'studietakt3'; // 75%
     } else if (document.getElementById('studietakt4').checked) {
         response = 'studietakt4'; // 100%
-    } 
+    }
 
     var takt = document.getElementById(response).nextElementSibling.innerHTML;
     return takt;
 
 }
 
-function getMotivering () {
+function getMotivering() {
     var response;
     response = document.getElementById("motivering").value;
     return response;
