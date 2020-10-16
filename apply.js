@@ -140,6 +140,7 @@ const UIController = (function() {
             return Selectors;
 
         },
+        // show courses on UI
         createCourseList: function(courses) {
 
             document.querySelectorAll(Selectors.courseLink).forEach(element => {
@@ -191,6 +192,8 @@ const UIController = (function() {
 
 
         },
+
+        //to choose courses what you want from list
         addCourse: function(e) {
 
             if (e.target.classList.contains("selected") != true) {
@@ -215,7 +218,7 @@ const UIController = (function() {
             }
             e.preventDefault();
         },
-
+        // delete course from UI that you don't want
         deleteCourse: function(e) {
             if (e.target.classList.contains("delete")) {
                 e.target.parentElement.parentElement.remove();
@@ -252,7 +255,7 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
                 // Add selected course
                 const newSelectedCourse = CourseCtrl.addSelectedCourseToArray(course, school, point);
 
-                // add course to LS
+                // add course to LocalStorage
                 StorageCtrl.setCourses(newSelectedCourse);
             }
         }
