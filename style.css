@@ -180,7 +180,7 @@ footer {
 }
 
 #schedule-table {
-    margin: 50px;
+    margin: 50px auto;
 }
 
 .komvux-title {
@@ -313,7 +313,7 @@ footer {
 .courses {
     width: 250px;
     height: 320px;
-    border: 3px solid maroon;
+    border: 2px solid maroon;
     padding: 20px;
     margin: 20px;
     float: right;
@@ -325,7 +325,7 @@ footer {
 }
 
 .courses:hover {
-    background-color: rgb(250, 167, 167);
+    background-color: rgb(255, 226, 226);
     transform : scale(1.05);
 }
 
@@ -480,7 +480,8 @@ footer {
 
 .accordion-panel {
     padding: 0 18px;
-    background-color: #dadada;
+    /*background-color: #dadada;*/
+    background-color: honeydew;
     display: none;
     height: auto;
     border-top: 1px solid #e5e5e5;
@@ -490,7 +491,7 @@ footer {
 .accordion-panel ul {
     margin-left: 30px;
     list-style-type: none;
-    background-color: #dadada;
+    background-color: honeydew;
     margin: 0;
     padding: 0;
 }
@@ -540,4 +541,16 @@ footer {
 
 .personal-number {
     display: none;
+}
+
+/*--------Calendar style----------------*/
+
+.day {
+    background-color: #e5e5e5;
+}
+
+.time {
+    background-color: #e5e5e5;
+    text-align: center;
+    font-weight: bold;
 }

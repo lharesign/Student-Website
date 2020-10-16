@@ -40,11 +40,11 @@ function createTable() {
                 time = "Time";
                 break;
         }
-        
+
         /*-------j identifies Day of the Week-------------------*/
         for (let j = 0; j < columns; j++) { 
             if(j == 0) {
-                text += "<td>" + time + "</td>";
+                text += "<td class=\"time\">" + time + "</td>";
             }
             else {
                 /*Dynamically allocating the course schedule with teacher and classroom details*/
