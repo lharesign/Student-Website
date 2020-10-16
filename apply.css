@@ -23,7 +23,7 @@
     overflow: hidden;
 }
 
-#skicka-btn {
+#skicka-btn a {
     text-decoration: none;
     color: white;
 }

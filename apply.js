@@ -261,6 +261,51 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
     }
 
 
+
+    moveOn = function(e) {
+
+        var selectArray = [];
+
+        var table = document.getElementById("selectedCourseList");
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            //iterate through rows
+            //rows would be accessed using the "row" variable assigned in the for loop
+            var selectObject = {
+                course: null,
+                school: null,
+                points: null
+            };
+
+            for (var j = 0, col; col = row.cells[j]; j++) {
+
+                switch (j) {
+                    case 0:
+                        selectObject.course = col.textContent;
+                        break;
+                    case 1:
+                        selectObject.school = col.textContent;
+                        break;
+                    case 2:
+                        selectObject.points = col.textContent;
+                        break;
+                    default:
+                        break;
+                }
+                //iterate through columns
+                //columns would be accessed using the "col" variable assigned in the for loop
+
+            }
+            selectArray[i] = selectObject;
+        }
+
+        function saveList() {
+            var jsonArray = JSON.stringify(selectArray);
+            localStorage.setItem("courseArray", jsonArray);
+        }
+
+        saveList();
+    }
+
     selectedCourse = function(e) {
         UICtrl.addCourse(e);
         e.preventDefault();
@@ -291,6 +336,66 @@ const App = (function(CourseCtrl, UICtrl, StorageCtrl) {
 App.init();
 
 
+function saveMotivering() {
+
+    var motiveringAnswers = {
+        studiemedel: null,
+        studietakt: null,
+        motivering: null
+    }
+
+    motiveringAnswers.studiemedel = getStudiemedel();
+    motiveringAnswers.studietakt = getStudietakt();
+    motiveringAnswers.motivering = getMotivering();
+
+    function saveMotiveringToLocal() {
+        var jsonArray = JSON.stringify(motiveringAnswers);
+        localStorage.setItem("motiveringAnswers", jsonArray);
+    }
+
+    saveMotiveringToLocal();
+}
+
+function getStudiemedel () {
+    var response;
+
+    if (document.getElementById('studiemedel1').checked) {
+        response = 'studiemedel1'; // Yes
+    } else if (document.getElementById('studiemedel2').checked) {
+        response = 'studiemedel2'; //No
+    }
+
+    var medel = document.getElementById(response).nextElementSibling.innerHTML;
+    return medel;
+
+}
+
+function getStudietakt () {
+    var response;
+
+    if (document.getElementById('studietakt1').checked) {
+        response = 'studietakt1'; // 25%
+    } else if (document.getElementById('studietakt2').checked) {
+        response = 'studietakt2'; //50%
+    } else if (document.getElementById('studietakt3').checked) {
+        response = 'studietakt3'; // 75%
+    } else if (document.getElementById('studietakt4').checked) {
+        response = 'studietakt4'; // 100%
+    } 
+
+    var takt = document.getElementById(response).nextElementSibling.innerHTML;
+    return takt;
+
+}
+
+function getMotivering () {
+    var response;
+    response = document.getElementById("motivering").value;
+    return response;
+
+}
+
+
 
 // accordion
 
@@ -308,4 +413,8 @@ for (i = 0; i < acc.length; i++) {
             panel.style.display = "block";
         }
     });
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8175647de4b054d62d35fc4dacd75571651841bb
