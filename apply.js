@@ -3,12 +3,13 @@ const StorageController = (function() {
 
     return {
         setCourses: function(newSelectedCourse) {
-            localStorage.clear();
+
             let selectedCourses;
-            if (localStorage.getItem('selectedCourses') === null) {
+            if (localStorage.getItem('selectedCourses') == null) {
                 selectedCourses = [];
                 selectedCourses.push(newSelectedCourse);
             } else {
+                localStorage.clear();
                 selectedCourses = JSON.parse(localStorage.getItem('selectedCourses'));
                 selectedCourses.push(newSelectedCourse);
             }
@@ -293,7 +294,8 @@ App.init();
 
 // accordion
 
-var i;var acc = document.getElementsByClassName("accordion");
+var i;
+var acc = document.getElementsByClassName("accordion");
 
 
 for (i = 0; i < acc.length; i++) {
@@ -307,4 +309,3 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
-

@@ -111,7 +111,7 @@
 
     <script>
         loadCourses = function() {
-            if (localStorage.getItem('selectedCourses') === null) {
+            if (localStorage.getItem('selectedCourses') == null) {
                 selectedCourses = [];
             } else {
                 selectedCourses = JSON.parse(localStorage.getItem('selectedCourses'));
