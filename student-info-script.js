@@ -1,3 +1,4 @@
+// creating object of student
 var student = {
     personnummer: "19931211-2437",
     forrnamn: "Luke",
@@ -14,6 +15,7 @@ var student = {
     modersmal: "Engelska"
 };
 
+// retrieving the student saved in local storage and updating the student to those values
 function updateStudent() {
     var retrievedObject = localStorage.getItem('student');
     retrievedObject = JSON.parse(retrievedObject);
@@ -30,6 +32,8 @@ function updateStudent() {
 
 updateStudent();
 
+// looping through the keys in the student object and displaying them in the relevant span/inputs
+// in the kontakt information section
 function insertStudentInformation() {
 
     for (var key in student) {
@@ -44,7 +48,8 @@ function insertStudentInformation() {
 
 insertStudentInformation();
 
-
+// if users presses edit, changing editable spans to inputs so they can take info
+// populating inputs with current span info
 function editData() {
 
     var editableFields = document.querySelectorAll(".edit-me");
@@ -61,7 +66,10 @@ function editData() {
 
 }
 
+// function to be called when user tries to save update
 function saveUpdates() {
+    document.getElementById("displaymsg").style.display = "none";
+    //document.getElementById("displaymsg").innerHTML = "";
 
     var address = document.getElementById("adress").value;
     var postcode = document.getElementById("postnummer").value;
@@ -72,18 +80,20 @@ function saveUpdates() {
     var homeCommunity = document.getElementById("hemkommun").value;
     var asterix = document.querySelectorAll(".obligatory-asterix");
 
-    console.log(asterix);
-
     var success = true;
 
+    // when user presses save, checking if all obligatory fields are populated
+    // if not, displaying asterix by obligatory field and displaying warning message
     if ((address.length === 0) || (postcode.length === 0) || (town.length === 0) || (mobile.length === 0) || (emailAddress.length === 0) || (emailConfirm.length === 0) || (homeCommunity.length === 0)) {
         success = false;
+        document.getElementById("displaymsg").style.display = "block";
+        document.getElementById("displaymsg").innerHTML = "Du måste fylla i det obligatoriska(*) fältet";
         for (let i = 0; i < asterix.length; i++) {
             asterix[i].style.display = "inline";
         }
     }
 
-    console.log(success);
+    // if all fields are populated correctly, changing inputs to spans with the new values
 
     if (success) {
         for (var key in student) {
@@ -108,13 +118,14 @@ function saveUpdates() {
             editableFields[i].parentNode.replaceChild(newNode, editableFields[i]);
             document.getElementById(idValue).innerHTML = student[idValue];
         }
+        // hiding all asterix 
 
         for (let i = 0; i < asterix.length; i++) {
             asterix[i].style.display = "none";
         }
 
+        // saving new values in student object in local storage
         localStorage.setItem('student', JSON.stringify(student))
-        var retrievedObject = localStorage.getItem('student');
     }
 
 }

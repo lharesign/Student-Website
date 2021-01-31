@@ -1,14 +1,16 @@
-var calendar = document.getElementById("schedule-table");
-console.log("Testing");
-console.log(calendar);
 
-var columns = 8;
-var rows = 8;
+/*---------------Looking for the calender element-----------------------------*/
+var calendar = document.getElementById("schedule-table");
+
+var columns = 8; // columns identify day of the week and an added column of time
+var rows = 8; // rows identify hour of the day
 
 function createTable() {
     for (let i = 0; i < rows; i++) {
         var text = "<tr>";
         var time;
+
+        // Assigning the right hour of the day in ascending order of row
         switch (i) {
             case 0:
                 time = "09:00 - 10:00";
@@ -38,12 +40,14 @@ function createTable() {
                 time = "Time";
                 break;
         }
+
         /*-------j identifies Day of the Week-------------------*/
         for (let j = 0; j < columns; j++) { 
             if(j == 0) {
-                text += "<td>" + time + "</td>";
+                text += "<td class=\"time\">" + time + "</td>";
             }
             else {
+                /*Dynamically allocating the course schedule with teacher and classroom details*/
                 if(j == 1 && time == "09:00 - 10:00") {
                     text += "<td title=\"Classroom 417\nTeacher: Dimitrij Aleshkov\"> Programming </td>";
                 }
@@ -56,13 +60,11 @@ function createTable() {
 
         }
         text += "</tr>";
+        /*---------Inserting the texts inside the calendar---------------*/
         calendar.innerHTML += text;
-        console.log(text);
 
     }
 
 }
 
 createTable();
-
-//var table = document.querySelectorAll("#calendar-table");
