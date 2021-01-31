@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="slider-script.js"></script>
+    <script src="slider-script.js" defer></script>
+    <script src="displayStudent.js" defer></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
         </div>
         <form class="student-info-btn" target="_blank">
             <label class="student-text" onclick="displayStudent()"> Elever Information</label>
-            <div class="personal-number">
+            <div id="personal-number">
                 <input type="text" placeholder="Personnummer">
                 <input type="submit" value="Skicka in">
             </div>

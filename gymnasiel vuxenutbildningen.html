@@ -1,51 +1,75 @@
-<html>
-
+<!DOCTYPE html>
+<html><html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">    
-    <script src="calendar.js" type='text/javascript' defer></script>
-    <script src="displayStudent.js" defer></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymnasiel Vuxenutbildning</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
+
     <header>
-        <img src="http://www2.renaremark.se/wp-content/uploads/2017/08/helsingborg.png">
+        <a href="index.html"><img src="http://www2.renaremark.se/wp-content/uploads/2017/08/helsingborg.png"></a>
         <h1 class="komvux-title">Komvux Helsingborg </h1>
     </header>
-    <nav class="header-bar">
-        <div class="dropdown">Kurser
-            <ul class="dropdown-content">
-                <li> <a href="">SVA Grundläggande </a> </li>
-                <li> <a href="">Kurser pa grundläggande nivå motsvarande arkurs 7-9</a> </li>
-                <li> <a href="">Kurser pa gymnasienivå </a> </li>
-                <li> <a href="">Yrkesutbildningar </a> </li>
-            </ul>
-        </div>
-        <form class="student-info-btn" target="_blank">
-            <label class="student-text" onclick="displayStudent()"> Elever Information</label>
-            <div id="personal-number">
-                <input type="text" placeholder="Personnummer">
-                <input type="submit" value="Skicka in">
-            </div>
-        </form>
+    <nav class="header-bar sticky">
+        <div class="kurser-btn"><a href="course info.html">Kurser</a></div>
+        <div class="kurser-btn"><a href="student-home.html">Elever Infomation</a></div>
         <form class="search-bar" target="_blank">
             <input type="search" id="gsearch" name="gsearch" size="20">
             <input type="submit" value="Sök">
         </form>
     </nav>
-    <table id="schedule-table">
-        <tr>
-            <th class="time">Time</th>
-            <th class="day">Monday</th>
-            <th class="day">Tuesday</th>
-            <th class="day">Wednesday</th>
-            <th class="day">Thursday</th>
-            <th class="day">Friday</th>
-            <th class="day">Saturday</th>
-            <th class="day">Sunday</th>
-        </tr>
-    </table>
-</body>
-<footer>
+
+<h1 style = "text-align:center; margin:20px"> Gymnasial vuxenutbildning </h1> 
+
+<div class = "text">
+
+<img src="https://komvux.helsingborg.se/wp-content/uploads/sites/130/2019/05/grundlaggande-800x450.jpg " 
+            class = "image">
+
+   
+  <p style = "font-weight:bolder; font-size:larger; margin-top:20px; margin-bottom: 20px;">Du som helt eller delvis saknar betyg från 
+    gymnasieskolan kan läsa gymnasial vuxenutbildning. Vill du läsa in gymnasiekurser inför yrkesutbildning, 
+    högskolestudier eller arbete kan du göra det på Komvux Helsingborg. Du studerar i grupp dagtid. 
+</p> 
+
+<p style = "font-weight:500"> 
+
+<b> Studieformer </b>
+    <br><br> Du läser enligt ett schema med fasta rutiner. Du kan välja att läsa på deltid eller heltid. Flera
+     kurser går att kombinera. Heltidsstudier kräver 20 poäng/vecka. De flesta kurser är 20 veckor. Några 
+     50- och 100-poängskurser är 10 veckor.
+
+<b> Förkunskapskrav </b> 
+<br> Grundskola eller motsvarande kunskaper
+
+   <br> <br>
+   <b> Sista ansökningsdag </b>    
+   <br> Sista ansökningsdag är 14 dagar före kursstart.
+
+   <br> <b> Kursstarter och tider </b>      <br>
+   Kursstarter för 2020 hittar du under varje kurs flik längre ner på sidan eller i pdf:en som du kan ladda
+    ner i kolumnen till höger 
+    
+    <br> <br>
+
+<b> Kurslitteratur </b>         
+   <br> Litteraturlista för gymnasiekurser på Komvux Helsingborg, hösten 2020
+
+   <br><br>
+<b> Ansökan </b>          
+<br> Gör din ansökan på webben.  <br><br>
+<button class = "apply"> <a href = "apply.html">Ansöka</a> </button>
+   
+</p>
+    </div>   
+          </body>
+
+<footer style = "margin-top:20px">
     <div class="footer-container">
         <div class="footer-logo">
             <a href="index.html"><img src="Images/Helsingborg-Logo-Grey.JPG" alt="Helsingborg Town Logo"></a>
@@ -83,5 +107,7 @@
                 <a class="footer-link" href="http://arcg.is/1NzxgV8" target="_blank">Visa på Karta</a>
         </div>
     </div>
+
 </footer>
+    
 </html>

@@ -241,8 +241,8 @@ footer {
     display:inline-block;
 }
 
-.personal-number {
-    /*display:none;              //ADD A FUNCTION TO DISPLAY/HIDE THIS    */ 
+#personal-number {
+    display: none;
     float: right;
     margin-left: 10px;
 }
